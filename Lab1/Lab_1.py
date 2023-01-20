@@ -98,7 +98,9 @@ def featureNormalization(X):
     - X_std: a 1-D numpy array of length (num_features)
     """
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-  
+    X_mean = X.mean(0)
+    X_std = X.std(0)
+    X_normalized = (X - X_mean) / X_std
 
     # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
@@ -118,7 +120,7 @@ def applyNormalization(X, X_mean, X_std):
     """
 
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-    
+    X_normalized = (X - X_mean) / X_std 
 
     # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
@@ -137,7 +139,8 @@ def computeMSE(X, y, theta):
     - error: MSE, a real number
     """
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
- 
+    m = len(X)
+    error = sum(((np.dot(X, np.transpose(theta))-y)**2))/(m*2)
 
     # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
     return error
@@ -155,7 +158,8 @@ def computeGradient(X, y, theta):
     """
 
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-  
+    m = len(X)
+    gradient = ((np.dot( np.dot(theta, np.transpose(X)), X))/m) - ((np.dot(np.transpose(X), y))/m)
 
     # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
@@ -179,12 +183,16 @@ def gradientDescent(X, y, theta, alpha, num_iters):
             recording the loss value of Eq (10) at every iteration, 
     """
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-   
+    m = len(X)
+    Loss_record = np.zeros(num_iters)
+    for i in range(num_iters):
+      theta = theta - (alpha*(((np.dot( np.dot(theta, np.transpose(X)), X))/m) - ((np.dot(np.transpose(X), y))/m)))
+      Loss_record[i] = sum(((np.dot(X, np.transpose(theta))-y)**2))/(m*2)   
 
     # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
     return theta, Loss_record
 
-#Problem 2.5-step 1
+#Problem 2.5-step 1s
 def closeForm(X, y):
     """
     Compute close form solution for theta
