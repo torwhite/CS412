@@ -159,7 +159,7 @@ def computeGradient(X, y, theta):
 
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
     m = len(X)
-    gradient = ((np.dot( np.dot(theta, np.transpose(X)), X))/m) - ((np.dot(np.transpose(X), y))/m)
+    gradient = (np.dot(np.transpose(X), np.dot(X,theta)) / m) - ((np.dot(np.transpose(X), y)) / m)
 
     # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
@@ -187,8 +187,7 @@ def gradientDescent(X, y, theta, alpha, num_iters):
     Loss_record = np.zeros(num_iters)
     for i in range(num_iters):
       theta = theta - (alpha*(((np.dot( np.dot(theta, np.transpose(X)), X))/m) - ((np.dot(np.transpose(X), y))/m)))
-      Loss_record[i] = sum(((np.dot(X, np.transpose(theta))-y)**2))/(m*2)   
-
+      Loss_record[i] = sum(((np.dot(X, np.transpose(theta))-y)**2))/(m*2) 
     # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
     return theta, Loss_record
 
