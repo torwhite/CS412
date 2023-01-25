@@ -27,10 +27,8 @@ def estimate(p, nSample):
   m = nSample.size
   ProbEst = np.empty([m, k], dtype=float)
   # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-  i = 0
-  for n in nSample:
-    ProbEst[i] = np.random.multinomial(n, p)/n
-    i+= 1
+  for n in range(len(nSample)):
+    ProbEst[n] = np.random.multinomial(nSample[n], p)/nSample[n]
   # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
   return ProbEst
 

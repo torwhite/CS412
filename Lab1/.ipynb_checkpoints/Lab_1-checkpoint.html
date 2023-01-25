@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lab_1</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="Lab_1_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Lab_1_files/libs/quarto-html/quarto.js"></script>
+<script src="Lab_1_files/libs/quarto-html/popper.min.js"></script>
+<script src="Lab_1_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Lab_1_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Lab_1_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Lab_1_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Lab_1_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Lab_1_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Lab_1_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="lab-1-basic-sampling-and-linear-regression" class="level1">
+<h1><strong>Lab 1: Basic Sampling and Linear Regression</strong></h1>
+<p>CS 412</p>
+<p><strong><em>This is an individual lab, i.e., NOT for group work.</em></strong></p>
+<p>This is your first lab. You will see how to do multinomial sampling efficiently and how to do linear regression. You will also learn how to make real-valued predictions using a linear regression model. In particular, we will help you to get started with these algorithms <em>step by step</em>.</p>
+<p><strong><em>Deadline:</em></strong> <strong>23:59, Wednesday of Week 3</strong>.</p>
+<section id="please-refer-to-lab_guideline.pdf-in-the-same-google-drive-folder-as-this-jupyter-notebook-the-rules-there-apply-to-all-the-labs." class="level2">
+<h2 class="anchored" data-anchor-id="please-refer-to-lab_guideline.pdf-in-the-same-google-drive-folder-as-this-jupyter-notebook-the-rules-there-apply-to-all-the-labs."><font color="red"> Please refer to <code>Lab_Guideline.pdf</code> in the same Google Drive folder as this Jupyter notebook; the rules there apply to all the labs.</font></h2>
+</section>
+</section>
+<section id="problem-1-basic-sampling-24-points" class="level1">
+<h1>Problem 1: Basic Sampling <strong>(24 points)</strong></h1>
+<p>Say that we cast a die and want to know what the chance is of seeing a 1 rather than another digit. If the die is fair, all the six outcomes <span class="math inline">\(\{1, \ldots, 6\}\)</span> are equally likely to occur, and thus we would see a <span class="math inline">\(1\)</span> in one out of six cases. Formally we state that <span class="math inline">\(1\)</span> occurs with probability <span class="math inline">\(\frac{1}{6}\)</span>.</p>
+<p>For a real die that we receive from a factory, we might not know those proportions and we would need to check whether it is tainted. The only way to investigate the die is by casting it many times and recording the outcomes. For each cast of the die, we will observe a value in <span class="math inline">\(\{1, \ldots, 6\}\)</span>. Given these outcomes, we want to investigate the probability of observing each outcome.</p>
+<p>One natural approach for each value is to take the individual count for that value and to divide it by the total number of tosses. This gives us an <em>estimate</em> of the probability of a given <em>event</em>. The <em>law of large numbers</em> tell us that as the number of tosses grows this estimate will draw closer and closer to the true underlying probability. Before going into the details of what is going here, let us try it out.</p>
+<p>To start, let us import the necessary packages.</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="basic-sampling-for-multinomial-distribution-7-points" class="level2">
+<h2 class="anchored" data-anchor-id="basic-sampling-for-multinomial-distribution-7-points">1.1 Basic Sampling for multinomial distribution (7 points)</h2>
+<p>Next, we will want to be able to cast the die. In statistics we call this process of drawing examples from probability distributions <em>sampling</em>. The distribution that assigns probabilities to a number of discrete choices is called the <em>multinomial distribution</em>. We will give a more formal definition of <em>distribution</em> later, but at a high level, think of it as just an assignment of probabilities to events.</p>
+<p>Given a vector of probabilities (e.g., <span class="math inline">\(p=(p_1, \ldots, p_6) =\)</span> (0.05, 0.1, 0.15, 0.2, 0.25, 0.25)), <code>np.random.multinomial</code>(<span class="math inline">\(n,p\)</span>) will simulate the cast for <span class="math inline">\(n\)</span> times independently, and it returns a <span class="math inline">\(k\)</span>-dimensional vector, whose <span class="math inline">\(i\)</span>-th entry encodes count of outcome <span class="math inline">\(i\)</span> (<span class="math inline">\(i \in \{1,2,\ldots,k\}\)</span>). In this example, <span class="math inline">\(k=6\)</span>. Based on it, we can compute the fraction of occurrences for each of the <span class="math inline">\(k\)</span> outcomes.</p>
+<p>In the code below, make sure that you do not hard code <span class="math inline">\(k\)</span> into 6. Leave it as a variable that can be readily read from the dimensionality of the input argument.</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> estimate(p, nSample):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">"""</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">  Estimate the value of p by drawing samples with varying number of cast</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">  Input:</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">    - p:    a 1-D numpy array of size k (number of events), </span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">            encoding the probability of each of the k outcomes</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">    - nSample: a 1-D numpy array of size m specifying the sample sizes.</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">            Effectively, we run m number of experiments,</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">            with each experiment drawing nSample[j] number of samples (j=0,...,m-1)</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">  Outputs:</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">    - ProbEst: an m-by-k matrix (2-D numpy array), </span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">                whose j-th row (j &gt;= 0) encodes the probability estimate </span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">                for the k events based on nSample[j] number of samples</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co">  """</span>  </span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  np.random.seed(<span class="dv">1</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  k <span class="op">=</span> p.size</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  m <span class="op">=</span> nSample.size</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  ProbEst <span class="op">=</span> np.empty([m, k], dtype<span class="op">=</span><span class="bu">float</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  i <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> n <span class="kw">in</span> nSample:</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    ProbEst[i] <span class="op">=</span> np.random.multinomial(n, p)<span class="op">/</span>n</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    i<span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># *****</span><span class="re">END</span><span class="co"> OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> ProbEst</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="co">Unit test case below</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="co">You should get the following results:</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="co">[[0.         0.2        0.         0.2        0.4        0.2       ]</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="co"> [0.         0.05       0.15       0.2        0.3        0.3       ]</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="co"> [0.03333333 0.13333333 0.1        0.3        0.33333333 0.1       ]]</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.array([<span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.15</span>, <span class="fl">0.2</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>])</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>nSample <span class="op">=</span> np.arange(<span class="dv">10</span>, <span class="dv">40</span>, <span class="dv">10</span>)</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>ProbEst <span class="op">=</span> estimate(p, nSample)</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ProbEst)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[0.         0.2        0.         0.2        0.4        0.2       ]
+ [0.         0.05       0.15       0.2        0.3        0.3       ]
+ [0.03333333 0.13333333 0.1        0.3        0.33333333 0.1       ]]</code></pre>
+</div>
+</div>
+</section>
+<section id="plot-the-estimates-7-points" class="level2">
+<h2 class="anchored" data-anchor-id="plot-the-estimates-7-points">1.2 Plot the estimates (7 points)</h2>
+<p>Now use <code>matplotlib.pyplot.plot</code> to plot a figure whose horizontal <span class="math inline">\(x\)</span>-axis is the number of samples drawn (<span class="math inline">\(n\)</span>), and <span class="math inline">\(n\)</span> increments from 10 to 1000 at the step size of 10. The plot has 6 curves in six different colors, each corresponding to the estimation of <span class="math inline">\(p_i\)</span> (<span class="math inline">\(y\)</span>-axis) based on the <span class="math inline">\(n\)</span> casts. A good plot should</p>
+<ol type="1">
+<li>Properly label the two axes by meaningful text.</li>
+<li>Properly label the <a href="https://www.tutorialspoint.com/matplotlib/matplotlib_setting_ticks_and_tick_labels.htm">ticks</a> of the two axes. This includes the decision of the range of their values. Most time, you can leave it automatically set by Python. But if it does not look good, you can manually set it.</li>
+<li>Properly set the range of the <span class="math inline">\(y\)</span>-axis. That for the <span class="math inline">\(x\)</span>-axis is given.</li>
+<li>Provide legend. If the location that Python automatically chooses clouds some important parts of the plot, then manually set the legend location.</li>
+</ol>
+<p>Although it is not required for this lab, a figure often needs to be included in a paper or report. In such cases, you should also pay attention to the line width, line style (which can help distinguish curves when color information is lost in black-white printing), font size of the legend, axis label, and tick labels.</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Since this question is on plotting, no auto-grading can be done.</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Your answer will be graded manually based on the part between</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#     *****START OF YOUR CODE  and   *****</span><span class="re">END</span><span class="co"> OF YOUR CODE</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.array([<span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.15</span>, <span class="fl">0.2</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>])</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>nSample <span class="op">=</span> np.arange(<span class="dv">10</span>, <span class="dv">1000</span><span class="op">+</span><span class="dv">1</span>, <span class="dv">10</span>)  <span class="co"># think why we add 1 to 1000?</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>ProbEst <span class="op">=</span> estimate(p, nSample) <span class="co"># Call the estimate function you just wrote</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot using the ProbEst matrix</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Hint: it suffices to call plt.plot just once (no penalty if you call it multiple times)</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co"># *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co"># create plot</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>plt.plot(nSample,ProbEst)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co"># change axes ticks</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>plt.xticks(np.arange(<span class="dv">0</span>, <span class="dv">1001</span>, <span class="dv">100</span>))</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>plt.yticks(np.arange(<span class="fl">0.0</span>, <span class="fl">.51</span>, <span class="fl">.1</span>))</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co"># add title and labels</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Probability of Outcome k Based on Sample Size'</span>)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Probability of k"</span>)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Sample Size"</span>)</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co"># add legend</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>plt.gca().legend((<span class="st">'k=1'</span>,<span class="st">'k=2'</span>, <span class="st">'k=3'</span>, <span class="st">'k=4'</span>, <span class="st">'k=5'</span>, <span class="st">'k=6'</span>))</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co"># *****</span><span class="re">END</span><span class="co"> OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Lab_1_files/figure-html/cell-4-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="efficient-sampling-10-points" class="level2">
+<h2 class="anchored" data-anchor-id="efficient-sampling-10-points">1.3 Efficient sampling (10 points)</h2>
+<p>The experiment in the previous sub-question needs to call <code>np.random.multinomial</code>(<span class="math inline">\(n\)</span>,<span class="math inline">\(p\)</span>) many times. This is not efficient. Fortunately, this function provides a third argument that allows one to repeat the <span class="math inline">\(n\)</span>-cast for <span class="math inline">\(s\)</span> times. np.random.multinomial(<span class="math inline">\(n, p, s\)</span>) returns an <span class="math inline">\(s\)</span>-by-<span class="math inline">\(n\)</span> matrix, where each row is as before, but different rows represent different experiments. See the manual of the multinomial function <a href="https://numpy.org/doc/stable/reference/random/generated/numpy.random.multinomial.html">here</a>.</p>
+<p>Now redo the task in Section 1.1, but now you are only allowed to call np.random.multinomial <strong>once</strong>. The function you will write takes two input parameters <code>nSample_start</code> and <code>nSample_end</code>. <strong>The latter is required to be a multiple of the former</strong>. So in the sense of section 1.1, the function you will implement below will be equivalent to calling the <em>estimate</em> function (from Section 1.1) as follows:</p>
+<pre><code>nSample = np.arange(nSample_start, nSample_end+1, nSample_start)
+estimate(p, nSample)</code></pre>
+<p><strong>Hint</strong>: You may find the function <code>numpy.cumsum</code> useful. Also decide on the value of <span class="math inline">\(s\)</span> carefully.</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> estimate_efficient(p, nSample_start, nSample_end):</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">"""</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">  Estimate the value of p by drawing samples with varying number of nSample</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">  This function will call np.random.multinomial only once.</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">  Input:</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">  - p: a 1-D numpy array of size k (number of events), </span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">            encoding the probability of each of the k outcomes</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">  - nSample_start: an integer specifying the starting/minimum number of samples</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">  - nSample_end: an integer specifying the ending/maximum number of samples (inclusive)</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">    We require that nSample_end must be a multiple of nSample_start</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">  In the sense of section 1.1, the estimate function there will equivalently call</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">    nSample = np.arange(nSample_start, nSample_end+1, nSample_start)</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">    estimate(p, nSample)</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co">  Outputs:</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co">  - ProbEst: an m-by-k matrix (2-D numpy array), where m = nSample_end/nSample_start.</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co">              The j-th (j &gt;= 0) row encodes the probability estimate </span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co">                for the k events based on nSample_start*(j+1) number of samples</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co">  """</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  <span class="cf">assert</span>(nSample_end <span class="op">%</span> nSample_start <span class="op">==</span> <span class="dv">0</span>)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  np.random.seed(<span class="dv">1</span>)</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>  k <span class="op">=</span> p.size</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>  m <span class="op">=</span> <span class="bu">int</span>(nSample_end <span class="op">/</span> nSample_start)</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># define empty ProbEst matrix</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>  ProbEst <span class="op">=</span> np.empty([m, k], dtype<span class="op">=</span><span class="bu">float</span>)</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>  <span class="co"># create matrix of cumulative outcomes</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>  cum_outcomes <span class="op">=</span> np.cumsum(np.random.multinomial(nSample_start, p, m), axis <span class="op">=</span> <span class="dv">0</span>)</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>  i <span class="op">=</span> nSample_start</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(m):</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>    ProbEst[n] <span class="op">=</span> cum_outcomes[n]<span class="op">/</span>i</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>    i <span class="op">+=</span> nSample_start</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>  <span class="co"># *****</span><span class="re">END</span><span class="co"> OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****</span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> ProbEst</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a><span class="co">Unit test case below.</span></span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a><span class="co">You should get the following results:</span></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a><span class="co">[[0.         0.2        0.         0.2        0.4        0.2       ]</span></span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a><span class="co"> [0.         0.1        0.05       0.2        0.35       0.3       ]</span></span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a><span class="co"> [0.         0.1        0.06666667 0.26666667 0.36666667 0.2       ]]</span></span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.array([<span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.15</span>, <span class="fl">0.2</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>])</span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>probEst_eff <span class="op">=</span> estimate_efficient(p, <span class="dv">10</span>, <span class="dv">30</span>)</span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(probEst_eff)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[0.         0.2        0.         0.2        0.4        0.2       ]
+ [0.         0.1        0.05       0.2        0.35       0.3       ]
+ [0.         0.1        0.06666667 0.26666667 0.36666667 0.2       ]]</code></pre>
+</div>
+</div>
+</section>
+<section id="plot-the-result-from-efficient-sampling-0-points" class="level2">
+<h2 class="anchored" data-anchor-id="plot-the-result-from-efficient-sampling-0-points">1.4 Plot the result from Efficient sampling (0 points)</h2>
+<p>Now use <code>matplotlib.pyplot.plot</code> to plot the result from <strong>efficient</strong> sampling using <em>estimate_efficient</em>.</p>
+<p>Everything will be exactly the same as in Section 1.2, except that <code>estimate</code> is replaced by <code>estimate_efficient</code>. So there is no point associated with this question. It is only meant for yourself to appreciate the result.</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.array([<span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.15</span>, <span class="fl">0.2</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>])</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ProbEst_eff <span class="op">=</span> estimate_efficient(p, <span class="dv">10</span>, <span class="dv">1000</span>) </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy your code from Section 1.2 to plot using the ProbEst_eff matrix</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>nSample <span class="op">=</span> np.arange(<span class="dv">10</span>,<span class="dv">1001</span>,<span class="dv">10</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>plt.plot(nSample,ProbEst)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># change axis ticks</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>plt.xticks(np.arange(<span class="dv">0</span>, <span class="dv">1001</span>, <span class="dv">100</span>))</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>plt.yticks(np.arange(<span class="fl">0.0</span>, <span class="fl">.51</span>, <span class="fl">.1</span>))</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># add title and labels</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Probability of Outcome k Based on Sample Size'</span>)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Probability of k"</span>)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Sample Size"</span>)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co"># add legend</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>plt.gca().legend((<span class="st">'k=1'</span>,<span class="st">'k=2'</span>, <span class="st">'k=3'</span>, <span class="st">'k=4'</span>, <span class="st">'k=5'</span>, <span class="st">'k=6'</span>))</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="co"># *****</span><span class="re">END</span><span class="co"> OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Lab_1_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="problem-2-linear-regression-76-points" class="level1">
+<h1>Problem 2: Linear regression <strong>(76 points)</strong></h1>
+<p>In this section, we will explore linear regression models. The dataset we will use for this section is Wine Qualuty, whose description can be found <a href="http://archive.ics.uci.edu/ml/datasets/Wine+Quality">here</a>. This dataset contains <strong>4898</strong> examples, each containing <strong>11</strong> features (the first 11 columns), and the <strong>last</strong> (12-th) column is the value we want to predict. The dataset can be downloaded here <a href="https://www.cs.uic.edu/~zhangx/teaching/winequality-white.csv"><code>winequality-white.csv</code></a> (our code will download it directly).</p>
+<p>Different from classification models, a regression model is used to predict real values rather than the category an example belongs to. Linear regression is a linear approach to modeling the relationship between features and real value target. To perform supervised learning, we represent the hypothesis as a linear function of features (<span class="math inline">\(x\)</span>) to predict the output (<span class="math inline">\(y\)</span>).</p>
+<p><span class="math display">\[\begin{equation}
+f(x) = \theta_0 + \theta_1x_1 + ... + \theta_nx_n    \tag{8}
+\end{equation}\]</span></p>
+<p>Here <span class="math inline">\(\theta_i\)</span>’s are the <strong>parameters</strong> parameterizing the space of linear functions mapping from <span class="math inline">\(\mathcal{X}\)</span> to <span class="math inline">\(\mathcal{Y}\)</span>. Our goal is to <strong>learn</strong> these parameters so that we can find a linear function in this hypothesis space to estimate the output <span class="math inline">\(y\)</span>.</p>
+<p>To simplify the notation and ease the computation, we <strong>pad</strong> the input <span class="math inline">\(x\)</span> by letting <span class="math inline">\(x_0=1\)</span>. That is, for an example with three features <span class="math inline">\(x=[x_1, x_2, x_3]^\top\)</span>, the padded feature vector will be <span class="math inline">\(x=[1,x_1, x_2, x_3]^\top\)</span>. Then, the linear function can be written as:</p>
+<p><span class="math display">\[\begin{equation}
+f_\theta(x) = \sum_{j=0}^n \theta_j x_j = \theta^\top x    \tag{9}
+\end{equation}\]</span> where on the right-hand side above we are viewing <span class="math inline">\(\theta := [\theta_0, \theta_1, \ldots, \theta_n]^\top\)</span> and <span class="math inline">\(x\)</span> both as vectors, and here <span class="math inline">\(n = 11\)</span> is the number of features.</p>
+<p>Given a training set, the way to learn these parameters is to make <span class="math inline">\(f_\theta(x)\)</span> close to <span class="math inline">\(y\)</span>. To measure the closeness, we use Mean-Squared-Error (MSE) here. The loss function can therefore be defined as:</p>
+<p><span class="math display">\[\begin{equation}
+L(\theta) = \frac{1}{2m}\sum_{i=1}^m(f_\theta(x^{(i)})-y^{(i)})^2 = \frac{1}{2m}\sum_{i=1}^m(\theta^\top x^{(i)}-y^{(i)})^2,  \tag{10}
+\end{equation}\]</span> where the superscript <span class="math inline">\((i)\)</span> denotes the <span class="math inline">\(i\)</span>-th example, and <span class="math inline">\(m\)</span> is the total number of training samples. To learn the parameter <span class="math inline">\(\theta\)</span>, our goal is to <strong>minimize</strong> the above loss function. In this lab, we will explore two different methods to learn the parameter:</p>
+<ol type="1">
+<li>Gradient descent</li>
+<li>Closed-form solution (root of the gradient)</li>
+</ol>
+<section id="data-preprocessing-12-points" class="level2">
+<h2 class="anchored" data-anchor-id="data-preprocessing-12-points">2.1 Data preprocessing <strong>(12 points)</strong></h2>
+<p>Once we have received the dataset, we first need to preprocess it. Very often, the features in a dataset are of very different scale, which can slow down the optimization for Eq (10). To accelerate it, we need to normalize each feature by substracting its mean value, and then dividing by its standard deviation (std). Assuming <span class="math inline">\(X_i = [x_i^{(1)}, ... , x_i^{(m)}]^\top\)</span> is the <span class="math inline">\(i\)</span>-th feature in the training set (across the <span class="math inline">\(m\)</span> examples), the normalized feature <span class="math inline">\(i\)</span> for the <span class="math inline">\(j\)</span>-th training example can be computed by: <span class="math display">\[\begin{equation}
+\hat{x}^j_i = \frac{x^j_i - m_i}{s_i},
+\text{ where } m_i = mean(X_i), \text{ and } s_i = std(X_i).
+  \tag{11}
+\end{equation}\]</span></p>
+<p><strong>Step 1: normalize the training set (6 points)</strong> {-}</p>
+<p>In the following code block, implement a function <code>featureNormalization</code>. The input is the training set. The output is the normalized training set, along with the mean and std of each features. You will need the mean and std to apply to the test set later.</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> featureNormalization(X):</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">"""</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">  Normalize each feature for the input set</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">  Input:</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">  - X: a 2-D numpy array of shape (num_train, num_features)</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">  Outputs:</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">  - X_normalized: a 2-D numpy array of shape (num_train, num_features)</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">  - X_mean: a 1-D numpy array of length (num_features)</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">  - X_std: a 1-D numpy array of length (num_features)</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">  """</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  X_mean <span class="op">=</span> X.mean(<span class="dv">0</span>)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  X_std <span class="op">=</span> X.std(<span class="dv">0</span>)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  X_normalized <span class="op">=</span> (X <span class="op">-</span> X_mean) <span class="op">/</span> X_std</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># *****</span><span class="re">END</span><span class="co"> OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> X_normalized, X_mean, X_std</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="co"> Unit test case below.</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="co"> Should print</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="co">[[ 0.49109521 -0.40242644 -0.92156595 -0.1052653 ]</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="co"> [ 0.90298151  1.37532553  1.3897809   1.27398003]</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="co"> [-1.39407672 -0.97289909 -0.46821496 -1.16871473]]</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="co">[0.99 3.12 4.47 4.51]</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="co">[0.63124216 2.26128282 1.34553583 3.70492465]</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.array([[<span class="fl">1.30</span>,<span class="fl">2.21</span>,<span class="fl">3.23</span>,<span class="fl">4.12</span>], [<span class="fl">1.56</span>, <span class="fl">6.23</span>, <span class="fl">6.34</span>, <span class="fl">9.23</span>], [<span class="fl">0.11</span>, <span class="fl">0.92</span>, <span class="fl">3.84</span>, <span class="fl">0.18</span>]])</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>X_normalized, X_mean, X_std <span class="op">=</span> featureNormalization(X)</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_normalized)</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_mean)</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_std)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[ 0.49109521 -0.40242644 -0.92156595 -0.1052653 ]
+ [ 0.90298151  1.37532553  1.3897809   1.27398003]
+ [-1.39407672 -0.97289909 -0.46821496 -1.16871473]]
+[0.99 3.12 4.47 4.51]
+[0.63124216 2.26128282 1.34553583 3.70492465]</code></pre>
+</div>
+</div>
+<p><strong>Step 2: normalize the test set (6 points)</strong> {-}</p>
+<p>The above normalization function will be used for the training set. At test time, we will need to normalize the test data in the same way. However, we shouldn’t compute new mean and std from the test set itself, because it may be inconsistent with the training data. Instead, we will apply the mean <span class="math inline">\(m_i\)</span> and std <span class="math inline">\(s_i\)</span> computed from the training set. Given a text example <span class="math inline">\([x_1, \ldots, x_m]^\top\)</span>, we just transform <span class="math inline">\(x_i\)</span> into <span class="math inline">\((x_i - m_i)/s_i\)</span>, where <span class="math inline">\(m_i\)</span> and <span class="math inline">\(s_i\)</span> are computed from the training data as in the <em>where</em> clause of Eq (11).</p>
+<p>In the following code block, implement a function <code>applyNormalization</code>, which normalizes the test set for each feature using the provided mean and std.</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> applyNormalization(X, X_mean, X_std):</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">"""</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">  Normalize each feature for the input set X</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">  Input:</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">  - X: a 2-D numpy array of shape (num_test, num_features)</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">  - X_mean: a 1-D numpy array of length (num_features)</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">  - X_std: a 1-D numpy array of length (num_features)</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">  Output:</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">  - X_normalized: a 2-D numpy array of shape (num_test, num_features)  </span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co">  """</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  X_normalized <span class="op">=</span> (X <span class="op">-</span> X_mean) <span class="op">/</span> X_std </span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># *****</span><span class="re">END</span><span class="co"> OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> X_normalized</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="co">  Unit test case</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="co">  Should print</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="co">  [[ 3.00e-01  1.21e+00  6.15e-01  4.02e+01]</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="co">   [ 5.60e-01  5.23e+00  2.17e+00  9.13e+01]</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="co">   [-8.90e-01 -8.00e-02  9.20e-01  8.00e-01]]</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span>  np.array([[<span class="fl">1.30</span>,<span class="fl">2.21</span>,<span class="fl">3.23</span>,<span class="fl">4.12</span>], [<span class="fl">1.56</span>, <span class="fl">6.23</span>, <span class="fl">6.34</span>, <span class="fl">9.23</span>], </span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>               [<span class="fl">0.11</span>, <span class="fl">0.92</span>, <span class="fl">3.84</span>, <span class="fl">0.18</span>]])</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>X_mean <span class="op">=</span> np.array([<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">2.0</span>, <span class="fl">0.1</span>])</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>X_std <span class="op">=</span> np.array([<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">2.0</span>, <span class="fl">0.1</span>])</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>X_normalized <span class="op">=</span> applyNormalization(X, X_mean, X_std)</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_normalized)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[ 3.00e-01  1.21e+00  6.15e-01  4.02e+01]
+ [ 5.60e-01  5.23e+00  2.17e+00  9.13e+01]
+ [-8.90e-01 -8.00e-02  9.20e-01  8.00e-01]]</code></pre>
+</div>
+</div>
+<p>##2.2 Gradient Descent <strong>(28 points)</strong>{-}</p>
+<p>In this section, you will need to implement the gradient descent algorithm that trains the linear regression model. Some introductions to gradient descent can be found <a href="https://ml-cheatsheet.readthedocs.io/en/latest/gradient_descent.html">here</a>.</p>
+<p><strong>Step 1: implement the loss function (6 points)</strong> {-}</p>
+<p>As introduced at the begining of this problem, we will use MSE to measure the loss. In the following code block, implement a function <code>computeMSE</code>. Follow Equation (10), and the function should compute the MSE for the input set with the given <span class="math inline">\(\theta\)</span>.</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> computeMSE(X, y, theta):</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">"""</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">  Compute MSE for the input set (X,y) with theta</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">  Inputs:</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">  - X: a 2-D numpy array of shape (num_samples, num_features+1)</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">  - y: a 1-D numpy array of length (num_samples)</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">  - theta: a 1-D numpy array of length (num_features+1)</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">  Output:</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">  - error: MSE, a real number</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">  """</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  m <span class="op">=</span> <span class="bu">len</span>(X)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  error <span class="op">=</span> <span class="bu">sum</span>(((np.dot(X, np.transpose(theta))<span class="op">-</span>y)<span class="op">**</span><span class="dv">2</span>))<span class="op">/</span>(m<span class="op">*</span><span class="dv">2</span>)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># *****</span><span class="re">END</span><span class="co"> OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> error</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="co">  Unit test case:</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="co">  Should print 73.0</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.array([[<span class="fl">2.0</span>, <span class="fl">1.0</span>, <span class="fl">3.0</span>], [<span class="fl">3.0</span>, <span class="fl">6.0</span>, <span class="fl">2.0</span>]])</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span>  np.array([<span class="fl">1.0</span>, <span class="fl">1.0</span>])</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> np.array([<span class="fl">1.0</span>, <span class="fl">2.0</span>,<span class="fl">1.0</span>])</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>error <span class="op">=</span> computeMSE(X, y, theta)</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(error)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>73.0</code></pre>
+</div>
+</div>
+<p><strong>Step 2: compute the gradient of the loss function (14 points)</strong> {-}</p>
+<p>Recall that our goal is to find the parameter <span class="math inline">\(\theta\)</span> that can minimize the loss <span class="math inline">\(L(\theta)\)</span>. To find the <span class="math inline">\(\theta\)</span> with gradient descent method, we start from some initial <span class="math inline">\(\theta\)</span>, and then repeatedly perform the update: <span class="math display">\[\begin{equation}
+\theta = \theta - \alpha\nabla_{\theta}L(\theta).    \tag{12}
+\end{equation}\]</span></p>
+<p>Here <span class="math inline">\(\alpha &gt; 0\)</span> is a step size, a.k.a., learning rate. To enable this update rule, we first need to compute the gardient in <span class="math inline">\(\theta\)</span>.</p>
+<ol type="1">
+<li>Derive the gradient of <span class="math inline">\(\theta\)</span> from Eq (10), and <font color="red"> type the result in the following line:</font></li>
+</ol>
+<p><span class="math display">\[
+\nabla_{\theta}L(\theta) = \frac{X^{T}(X\theta)}{m} - \frac{X^{T}y}{m}
+\]</span></p>
+<p>Note for computational efficiency, your expression is not allowed to have <span class="math inline">\(\sum_{i=1}^m\)</span>, and cannot have any multiplication of two matrices. Multiplications of a matrix and a vector is allowed. Here is a hint. Let <span class="math inline">\(a_i\)</span> and <span class="math inline">\(b_i\)</span> be vectors. Then <span class="math display">\[
+  \sum_i (\theta^\top b_i) a_i = \sum_i a_i (b_i^\top \theta) = \left(\sum_i a_i b_i^\top \right) \theta = (A B^\top) \theta = A (B^\top \theta),
+\]</span> where <span class="math inline">\(A = [a_1, ..., a_m]\)</span> and <span class="math inline">\(B = [b_1, ..., b_m]\)</span>.</p>
+<ol start="2" type="1">
+<li>Then, implement a function <code>computeGradient</code> to compute the gradient <span class="math inline">\(\nabla_{\theta}L(\theta)\)</span> by following the expression you just derived above.</li>
+</ol>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> computeGradient(X, y, theta):</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">"""</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">  Compute the gradient of theta</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">  Inputs:</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">  - X: A 2-D numpy array of shape (num_train, num_features+1)</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">  - y: A 1-D numpy array of length (num_train)</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">  - theta: A 1-D numpy array of length (num_features+1)</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co">  Output:</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co">  - gradient: A 1-D numpy array of length (num_features+1)</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co">  """</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  m <span class="op">=</span> <span class="bu">len</span>(X)</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  gradient <span class="op">=</span> (np.dot(np.transpose(X), np.dot(X,theta)) <span class="op">/</span> m) <span class="op">-</span> ((np.dot(np.transpose(X), y)) <span class="op">/</span> m)</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># *****</span><span class="re">END</span><span class="co"> OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> gradient</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="co">""" </span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="co">  Unit test case:</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="co">  Should return</span></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a><span class="co">  [30. 51. 25.]</span></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span> </span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.array([[<span class="fl">2.0</span>, <span class="fl">1.0</span>, <span class="fl">3.0</span>], [<span class="fl">3.0</span>, <span class="fl">6.0</span>, <span class="fl">2.0</span>]])</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span>  np.array([<span class="fl">1.0</span>, <span class="fl">1.0</span>])</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> np.array([<span class="fl">1.0</span>, <span class="fl">2.0</span>,<span class="fl">1.0</span>])</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>gradient <span class="op">=</span> computeGradient(X, y, theta)</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gradient)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[30. 51. 25.]</code></pre>
+</div>
+</div>
+<p><strong>Step 3: implement the gradient descent algorithm (8 points)</strong> {-}</p>
+<p>Now we can use the update rule in Equation (12) to find the <span class="math inline">\(\theta\)</span> that minimizes <span class="math inline">\(L(\theta)\)</span>. We start from some initial <span class="math inline">\(\theta_0\)</span>, then repeatedly take a step in the direction of steepest decrease of <span class="math inline">\(L\)</span>. The <span class="math inline">\(\alpha\)</span> in Equation (12) indicates how large the step we want to take at every update. We repeat the updates for a certain number of iterations, and the last updated <span class="math inline">\(\theta\)</span> will be the <span class="math inline">\(\theta\)</span> we find. In the following code block, implement a function <code>gradientDescent</code>, which updates <span class="math inline">\(\theta\)</span> for <code>num_iters</code> times and records the loss value (MSE) at every iteration.</p>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gradientDescent(X, y, theta, alpha, num_iters):</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">"""</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">  Update theta using equation (12) for num_iters times.</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">  Input: </span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">  - X: a numpy array of shape (num_train, num_features+1)</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">  - y: a numpy array of shape (num_train, 1)</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">  - theta: a 1-D numpy array of length (num_features+1)</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">  - alpha: learning rate, a scalar</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co">  - num_iters: an integer specifying how many steps to run the gradient descent</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co">  Outputs:</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">  - theta: the final theta, a 1-D numpy array of length (num_features+1). </span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co">           You can directly overwrite the theta in the input argument, and return it.</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - Loss_record: a 1-D numpy array of length (num_iters), </span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co">          recording the loss value of Eq (10) at every iteration, </span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co">  """</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  m <span class="op">=</span> <span class="bu">len</span>(X)</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>  Loss_record <span class="op">=</span> np.zeros(num_iters)</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(num_iters):</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    theta <span class="op">=</span> theta <span class="op">-</span> (alpha<span class="op">*</span>(((np.dot( np.dot(theta, np.transpose(X)), X))<span class="op">/</span>m) <span class="op">-</span> ((np.dot(np.transpose(X), y))<span class="op">/</span>m)))</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>    Loss_record[i] <span class="op">=</span> <span class="bu">sum</span>(((np.dot(X, np.transpose(theta))<span class="op">-</span>y)<span class="op">**</span><span class="dv">2</span>))<span class="op">/</span>(m<span class="op">*</span><span class="dv">2</span>) </span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># *****</span><span class="re">END</span><span class="co"> OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> theta, Loss_record</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="co">  Unit test case:</span></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a><span class="co">  Should return</span></span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a><span class="co">  [[0.3322825 0.858839 0.446925 ]]</span></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a><span class="co">  [37.5778     19.36559064 10.00046345]</span></span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.array([[<span class="fl">2.0</span>, <span class="fl">1.0</span>, <span class="fl">3.0</span>], [<span class="fl">3.0</span>, <span class="fl">6.0</span>, <span class="fl">2.0</span>]])</span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span>  np.array([<span class="fl">1.0</span>, <span class="fl">1.0</span>])</span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> np.array([<span class="fl">1.0</span>, <span class="fl">2.0</span>, <span class="fl">1.0</span>])</span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>num_iters <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a>theta, Loss_record <span class="op">=</span> gradientDescent(X, y, theta, alpha, num_iters)</span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(theta)</span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Loss_record)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[0.3322825 0.858839  0.446925 ]
+[37.5778     19.36559064 10.00046345]</code></pre>
+</div>
+</div>
+</section>
+<section id="train-the-linear-regression-model-with-gradient-descent-14-points" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="train-the-linear-regression-model-with-gradient-descent-14-points">2.3 Train the linear regression model with gradient descent <strong>(14 points)</strong></h2>
+<p>Now we are ready to chain all the above functions together to perform the linear regression training on the Wine Quality dataset.</p>
+<p><strong>Step 1: load the data (not for grading)</strong></p>
+<p>The last column of the resulting “data” variable is the label. Read the first row of the downloaded winequality-white.csv for more descriptions of the columns.</p>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First load the data (this code block is not for grading)</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> urllib.request</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> shutil</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">'https://www.cs.uic.edu/~zhangx/teaching/winequality-white.csv'</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>file_name <span class="op">=</span> <span class="st">'winequality-white.csv'</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> urllib.request.urlopen(url) <span class="im">as</span> response, <span class="bu">open</span>(file_name, <span class="st">'wb'</span>) <span class="im">as</span> out_file:</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    shutil.copyfileobj(response, out_file)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.genfromtxt(file_name, delimiter<span class="op">=</span><span class="st">";"</span>, skip_header<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Step 2: training and testing (14 points)</strong></p>
+<p>After loading the dataset, split the dataset into training and test sets. Please split the first <strong>4000</strong> samples as training set and the rest as test set. Then perform the following:</p>
+<ul>
+<li>Normalize training set features</li>
+<li>Pad the normalized training features by a constant 1, as the new first feature</li>
+<li>Initialize <span class="math inline">\(\theta\)</span> as a zero vector</li>
+<li>Update <span class="math inline">\(\theta\)</span> using gradient descent (<code>num_iters</code> and <code>alpha</code> are provided)</li>
+<li><strong>Plot</strong> a figure where <span class="math inline">\(x\)</span>-axis is the number of iterations, <span class="math inline">\(y\)</span>-axis is the loss value (MSE).</li>
+<li>Apply normalization to test set features, pad the features</li>
+<li>Compute the test error (MSE) and <strong>print</strong> out the test error</li>
+</ul>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>num_train <span class="op">=</span> <span class="dv">4000</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>num_iters <span class="op">=</span> <span class="dv">500</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co"># *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co"># split dataset</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>train_data <span class="op">=</span> data[:num_train]</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>test_data <span class="op">=</span> data[num_train <span class="op">+</span><span class="dv">1</span>:]</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Normalize, pad training set</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Normalize with featureNormalization function</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>train_data_normalized, train_data_mean, train_data_std <span class="op">=</span> featureNormalization(train_data)</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="co">#pad training set</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="co">#concatenate ones to beginning of array</span></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>train_data_normalized <span class="op">=</span> np.concatenate((np.ones((num_train,<span class="dv">1</span>)), train_data_normalized), axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="co"># define y, num_features, &amp; initialize theta</span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.array(np.ones(num_train))</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>num_features <span class="op">=</span> np.shape(train_data)[<span class="dv">1</span>]</span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> np.array(np.zeros(num_features<span class="op">+</span><span class="dv">1</span>))</span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate gradient</span></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>theta, Loss_record <span class="op">=</span> gradientDescent(train_data_normalized, y, theta, alpha, num_iters)</span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot iteration by MSE</span></span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>plt.plot(Loss_record)</span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a><span class="co"># add title and labels</span></span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Loss Value (MSE) per Iteration of Gradient Descent Algorithm'</span>)</span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Loss Value (MSE)"</span>)</span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Iteration #"</span>)</span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a><span class="co">#Apply Normalization to test data</span></span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a>test_data_normalized <span class="op">=</span> applyNormalization(test_data, train_data_mean, train_data_std)</span>
+<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a><span class="co">#Pad test data</span></span>
+<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a>test_data_normalized <span class="op">=</span> np.concatenate((np.ones((<span class="bu">len</span>(test_data),<span class="dv">1</span>)), test_data_normalized), axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a><span class="co">#Compute and print test error</span></span>
+<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a><span class="co">#recompute y</span></span>
+<span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a>num_test <span class="op">=</span> <span class="bu">len</span>(test_data_normalized)</span>
+<span id="cb20-44"><a href="#cb20-44" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.array(np.ones(num_test))</span>
+<span id="cb20-45"><a href="#cb20-45" aria-hidden="true" tabindex="-1"></a><span class="co">#compute MSE</span></span>
+<span id="cb20-46"><a href="#cb20-46" aria-hidden="true" tabindex="-1"></a>test_error <span class="op">=</span> computeMSE(test_data_normalized, y, theta)</span>
+<span id="cb20-47"><a href="#cb20-47" aria-hidden="true" tabindex="-1"></a><span class="co">#print</span></span>
+<span id="cb20-48"><a href="#cb20-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(test_error)</span>
+<span id="cb20-49"><a href="#cb20-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-50"><a href="#cb20-50" aria-hidden="true" tabindex="-1"></a><span class="co"># *****</span><span class="re">END</span><span class="co"> OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Lab_1_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>2.1585623705578372e-05</code></pre>
+</div>
+</div>
+</section>
+<section id="effect-of-different-learning-rate-8-points" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="effect-of-different-learning-rate-8-points">2.4 Effect of different learning rate (8 points)</h2>
+<p>To investigate the effect of learning rate, repeat the learning process (gradient descent) with different learning rate in <span class="math inline">\([1.0, 0.1, 0.01, 0.001]\)</span>. <strong>Plot</strong> 4 figures corresponding to different learning rates, where the <span class="math inline">\(x\)</span>-axis is the number of iterations, and the <span class="math inline">\(y\)</span>-axis is the loss value (MSE). <strong>Print</strong> the test error (MSE) respectively in the format “test MSE for using learning rate __ is __” (four lines in total).</p>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>learning_rates <span class="op">=</span> [<span class="fl">1.0</span>, <span class="fl">0.1</span>, <span class="fl">0.01</span>, <span class="fl">0.001</span>]</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>Loss_record <span class="op">=</span> np.zeros((<span class="bu">len</span>(learning_rates), num_iters))</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>test_error <span class="op">=</span> np.zeros(<span class="bu">len</span>(learning_rates))</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co"># *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(learning_rates)):</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">#repeat learning process for learning_rates</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># define y, num_features, &amp; initialize theta</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    alpha <span class="op">=</span> learning_rates[i]</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> np.array(np.ones(num_train))</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>    num_features <span class="op">=</span> np.shape(train_data)[<span class="dv">1</span>]</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>    theta <span class="op">=</span> np.array(np.zeros(num_features<span class="op">+</span><span class="dv">1</span>)) </span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">#calculate gradient</span></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>    theta, Loss_record <span class="op">=</span> gradientDescent(train_data_normalized, y, theta, alpha, num_iters)</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>    <span class="co">#Plot iteration by MSE</span></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>    plt.plot(Loss_record)</span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add title and labels</span></span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">'Loss Value (MSE) per Iteration of Gradient Descent Algorithm'</span>)</span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">"Loss Value (MSE)"</span>)</span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">"Iteration #"</span>)</span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a>    <span class="co">#Apply Normalization to test data</span></span>
+<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a>    test_data_normalized <span class="op">=</span> applyNormalization(test_data, train_data_mean, train_data_std)</span>
+<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a>    <span class="co">#Pad test data</span></span>
+<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a>    test_data_normalized <span class="op">=</span> np.concatenate((np.ones((<span class="bu">len</span>(test_data),<span class="dv">1</span>)), test_data_normalized), axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a>    <span class="co">#Compute and print test error</span></span>
+<span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a>    <span class="co">#recompute y</span></span>
+<span id="cb22-35"><a href="#cb22-35" aria-hidden="true" tabindex="-1"></a>    num_test <span class="op">=</span> <span class="bu">len</span>(test_data_normalized)</span>
+<span id="cb22-36"><a href="#cb22-36" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> np.array(np.ones(num_test))</span>
+<span id="cb22-37"><a href="#cb22-37" aria-hidden="true" tabindex="-1"></a>    <span class="co">#compute MSE</span></span>
+<span id="cb22-38"><a href="#cb22-38" aria-hidden="true" tabindex="-1"></a>    test_error[i] <span class="op">=</span> computeMSE(test_data_normalized, y, theta)</span>
+<span id="cb22-39"><a href="#cb22-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-40"><a href="#cb22-40" aria-hidden="true" tabindex="-1"></a>    <span class="co">#print test error</span></span>
+<span id="cb22-41"><a href="#cb22-41" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"test MSE for using learning rate"</span>, learning_rates[i],  <span class="st">"is"</span>,  test_error[i])</span>
+<span id="cb22-42"><a href="#cb22-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-43"><a href="#cb22-43" aria-hidden="true" tabindex="-1"></a><span class="co"># *****</span><span class="re">END</span><span class="co"> OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/var/folders/pt/hywr0yrn551b1dd11xs97j5r0000gp/T/ipykernel_41142/2356179347.py:21: RuntimeWarning: overflow encountered in double_scalars
+  Loss_record[i] = sum(((np.dot(X, np.transpose(theta))-y)**2))/(m*2)
+/var/folders/pt/hywr0yrn551b1dd11xs97j5r0000gp/T/ipykernel_41142/2356179347.py:21: RuntimeWarning: overflow encountered in square
+  Loss_record[i] = sum(((np.dot(X, np.transpose(theta))-y)**2))/(m*2)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Lab_1_files/figure-html/cell-14-output-2.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/var/folders/pt/hywr0yrn551b1dd11xs97j5r0000gp/T/ipykernel_41142/3212509036.py:13: RuntimeWarning: overflow encountered in square
+  error = sum(((np.dot(X, np.transpose(theta))-y)**2))/(m*2)</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>test MSE for using learning rate 1.0 is inf</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Lab_1_files/figure-html/cell-14-output-5.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>test MSE for using learning rate 0.1 is 1.2233727486005391e-27</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Lab_1_files/figure-html/cell-14-output-7.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>test MSE for using learning rate 0.01 is 2.1585623705578372e-05</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Lab_1_files/figure-html/cell-14-output-9.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>test MSE for using learning rate 0.001 is 0.18384771238555858</code></pre>
+</div>
+</div>
+</section>
+<section id="closed-form-solution-14-points" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="closed-form-solution-14-points">2.5 Closed-form solution <strong>(14 points)</strong></h2>
+<p>Gradient descent minimizes <span class="math inline">\(L\)</span> by updating <span class="math inline">\(\theta\)</span> iteratively. There is another way to find the <span class="math inline">\(\theta\)</span> explicitly. Indeed, by finding the root of the gradient <span class="math inline">\(\nabla_\theta L(\theta)\)</span> (i.e., the <span class="math inline">\(\theta\)</span> such that <span class="math inline">\(\nabla_\theta L(\theta) = 0\)</span>), we can obtain a closed-form solution of <span class="math inline">\(\theta\)</span> that minimizes the loss <span class="math inline">\(L\)</span>.</p>
+<p><strong>Step 1: find the root of the gradient to obtain the closed-form solution of <span class="math inline">\(\theta\)</span> (10 points)</strong></p>
+<p><font color="red"> Type your result in the following lines:</font></p>
+<p><span class="math display">\[
+\nabla_{\theta}L(\theta) = 0 \quad \Rightarrow \quad \theta = (X^{T}X)^{-1}X^{T}y
+\]</span></p>
+<p>Then, implement a function <code>closeForm</code> to compute the closed-form solution of <span class="math inline">\(\theta\)</span> using the expression you have derived above.</p>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> closeForm(X, y):</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">"""</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co">  Compute close form solution for theta</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co">  Inputs:</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="co">  - X: a numpy array of shape (num_train, num_features+1)</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="co">  - y: a 1-D numpy array of length (num_train)</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="co">  Output:</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="co">  - theta: a 1-D numpy array of length (num_features+1)</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="co">  """</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="co"># *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>  theta <span class="op">=</span> np.dot(np.dot(np.linalg.inv(np.dot(np.transpose(X),X)),np.transpose(X)) ,y)</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a><span class="co"># *****</span><span class="re">END</span><span class="co"> OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****</span></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> theta</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a><span class="co">  Unit test case:</span></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a><span class="co">  Should return</span></span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a><span class="co">  [ 0.76470588 -0.17647059 -0.11764706]</span></span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.array([[<span class="fl">2.0</span>, <span class="fl">1.0</span>, <span class="fl">3.0</span>], [<span class="fl">3.0</span>, <span class="fl">6.0</span>, <span class="fl">2.0</span>], [<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="fl">2.0</span>]])</span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.array([<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="op">-</span><span class="fl">1.0</span>])</span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> closeForm(X, y)</span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(theta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[ 0.76470588 -0.17647059 -0.11764706]</code></pre>
+</div>
+</div>
+<p><strong>Step 2: evaluate the test error using closed-form solution (4 points)</strong> {-}</p>
+<p>Compute a new <span class="math inline">\(\theta\)</span> using the closed-form solution. Evaluate the new <span class="math inline">\(\theta\)</span> on test set by <strong>printing</strong> the test error (MSE) in the format: “test MSE using close form solution is : __“.</p>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>test_error <span class="op">=</span> computeMSE(X,y,theta)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co"># *****</span><span class="re">END</span><span class="co"> OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'test MSE using close form solution is : '</span>, test_error)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>test MSE using close form solution is :  4.1086505480261033e-32</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="submission-instruction" class="level1 unnumbered">
+<h1 class="unnumbered">Submission Instruction</h1>
+<p>You’re almost done! Take the following steps to finally submit your work.</p>
+<ol type="1">
+<li>After executing all commands and completing this notebook, save your <code>Lab_1.ipynb</code> as a PDF file, named as <code>X_Y_UIN.pdf</code>, where <code>X</code> is your first name, <code>Y</code> is your last name, and <code>UIN</code> is your UIN. Make sure that your PDF file includes all parts of your solution, including the plots.</li>
+</ol>
+<blockquote class="blockquote">
+<ul>
+<li>Print out all unit test case results before printing the notebook into a PDF.</li>
+<li>If you use Colab, open this notebook in Chrome. Then File -&gt; Print -&gt; set Destination to “Save as PDF”. If the web page freezes when printing, close Chrome and reopen the page. If Chrome doesn’t work, try Firefox.</li>
+<li>If you are working on your own computer, we recommend using the browser (not jupyter) for saving the PDF. For Chrome on a Mac, this is under <em>File-&gt;Print…-&gt;Open PDF in Preview</em>. When the PDF opens in Preview, you can use <em>Save…</em> to save it.</li>
+<li>Sometimes, a figure that appears near the end of a page can get cut. In this case, try to add some new lines in the preceding code block so that the figure is pushed to the beginning of the next page. Or insert some text blocks.</li>
+</ul>
+</blockquote>
+<ol start="2" type="1">
+<li><p>Upload <code>X_Y_UIN.pdf</code> to Gradescope under <code>Lab_1_Written</code>.</p></li>
+<li><p>A template of <code>Lab_1.py</code> has been provided. For all functions in <code>Lab_1.py</code>, copy the corresponding code snippets you have written into it, excluding the plot code. <strong>Do NOT</strong> copy any code of plotting figures and do not import <strong>matplotlib</strong>. This is because the auto-grader cannot work with plotting. <strong>Do NOT</strong> change the function names.</p></li>
+<li><p>Zip <code>Lab_1.py</code> and <code>Lab_1.ipynb</code> (<strong>2 files</strong>) into a zip file named <code>X_Y_UIN.zip</code>. Suppose the two files are in the folder <code>Lab_1</code>. Then zip up the <strong>two files inside the <code>Lab_1</code> folder</strong>. <strong>Do NOT zip up the folder <code>Lab_1</code></strong> because the auto-grader cannot search inside a folder. Submit this zip file to Gradescope under <code>Lab_1_Code</code>.</p></li>
+<li><p>The autograder on Gradscope will be open all the time. We designed some simple test cases to help you check wehther your functions are executable. You will see the results of running autograder once you submit your code. Please follow the error messages to debug. Since those simple test cases are designed for debugging, it does not guaranttee your solution will work well on the real dataset. It is your responsibility to make your code logically correct. Since all functions are tested in batch, the autograder might take a few minutes to run after submission. Also note that some questions are not covered by the auto-grader, and so the total score you see from the auto-grader is not 100.</p></li>
+<li><p>Sections 1.1 and 1.3 involve random functions, which makes auto-grading very difficult. We are using the following code to tolerate small difference between your function’s result and the reference result:</p>
+<p><code>self.assertIsNone(np.testing.assert_almost_equal(your_res, ref_res, decimal=2))</code></p>
+<p>So if the auto-test fails, try to add something like np.random.seed(x) (x = 1, 2, …) in your function implementation, so that randomness luckily attains an error below 2 decimal points. If it keeps failing and you are really confident, then ignore it and we will check your code manually anyway.</p></li>
+</ol>
+<p><font color="red"> <strong>If you only try to get real-time feedback from auto-grader, it will be fine to just upload</strong> <code>Lab_1.py</code> to <code>Lab_1_Code</code></font>. However, the final submission for grading should still follow the above point 4.</p>
+<p>You can submit to Gradescope as often as you like. We will only consider your last submission before the deadline.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
