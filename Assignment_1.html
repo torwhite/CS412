@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.2.313">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -95,25 +95,25 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<p>If <span class="math inline">\(A\)</span> &amp; <span class="math inline">\(B\)</span> are independent then,</p>
+<p>If <span class="math inline">\(A\)</span> &amp; <span class="math inline">\(B\)</span> are independent then any of the following equations hold:</p>
 <p><span class="math display">\[
-P(A|B) = P(A) \equiv P(B|A) = P(B) \equiv P(A,B) = P(A)P(B)
+\displaylines{P(A|B) = P(A) \equiv \\ P(B|A) = P(B) \equiv \\P(A,B) = P(A)P(B)}
+\]</span></p>
+<p>First, find <span class="math inline">\(P(A)\)</span> and <span class="math inline">\(P(B)\)</span> <span class="math display">\[
+\displaylines{P(A) = P(A=1, B=0) + P(A=1, B=1) \\
+     P(A) = 0.0 + 0.5 \\
+     P(A) = 0.5 }
 \]</span></p>
 <p><span class="math display">\[
-P(A) = P(A=1, B=0) + P(A=1, B=1)
-     = 0.0 + 0.5
-     = 0.5
-\]</span></p>
-<p><span class="math display">\[
-P(B) = P(A=0, B=1)+ P(A=1, B=1)
-     = 0.0 + 0.5
-     = 0.5
+\displaylines{P(B) = P(A=0, B=1)+ P(A=1, B=1) \\
+     P(B)= 0.0 + 0.5 \\
+     P(B) = 0.5}
 \]</span></p>
 <p>So, to test independence we can take</p>
 <p><span class="math display">\[
-P(A,B) = P(A)P(B)
-   0.5 = 0.5 * 0.5
-   0.5 \neq .25
+\displaylines{P(A,B) = P(A)P(B) \\
+   0.5 = 0.5 * 0.5 \\
+   0.5 \neq .25}
 \]</span></p>
 <p>So <span class="math inline">\(A\)</span> &amp; <span class="math inline">\(B\)</span> are <strong>not</strong> independent.</p>
 <div style="page-break-after: always;"></div>
@@ -180,6 +180,14 @@ P(A,B) = P(A)P(B)
 </tr>
 </tbody>
 </table>
+<p><span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are conditionally independent given <span class="math inline">\(C\)</span> if any holds: <span class="math display">\[
+\displaylines{P(A|B,C) = P(A|C) \equiv \\ P(B|A,C) = P(B|C) \equiv \\P(A,B|C) = P(A|C)P(B|C)}
+\]</span></p>
+<p>First, <span class="math display">\[
+\displaylines{P(A) = P(A=1,B=0,C=0) + P(A=1,B=0,C=1) + P(A=1,B=1,C=0) + P(A=1,B=1,C=1) \\
+P(A) = .024 + .180 +.180 +.096 = .516}
+\]</span></p>
+<p>Look at : https://stats.libretexts.org/Bookshelves/Probability_Theory/Applied_Probability_(Pfeiffer)/05%3A_Conditional_Independence/5.01%3A_Conditional_Independence</p>
 <div style="page-break-after: always;"></div>
 <ol start="3" type="1">
 <li>Consider two binary random variables A and B. If A ⊥ B (i.e., A and B are independent), and P(A = 0, B = 0) = 0.18 and P(A = 1, B = 0) = 0.28, what is the probability of P(A = 0, B = 1)? (34 points)</li>
@@ -201,7 +209,7 @@ P(A,B) = P(A)P(B)
 <tr class="even">
 <td>0</td>
 <td>1</td>
-<td>n.a.</td>
+<td>n.a. (<span class="math inline">\(x\)</span>)</td>
 </tr>
 <tr class="odd">
 <td>1</td>
@@ -211,10 +219,22 @@ P(A,B) = P(A)P(B)
 <tr class="even">
 <td>1</td>
 <td>1</td>
-<td>n.a.</td>
+<td>n.a. (<span class="math inline">\(y\)</span>)</td>
 </tr>
 </tbody>
 </table>
+<p>From the given probabilities we know:</p>
+<p><span class="math display">\[
+\displaylines{P(B=0) = P(A=0,B=0) + P(A=1,B=0) \\
+P(B=0) = .18 + .28 \\
+P(B=0) = .46}
+\]</span></p>
+<p>Hence, <span class="math display">\[
+\displaylines{P(B=1) = 1- P(B=0) \\
+P(B=1) = 1 - .46 \\
+P(B=1) = .54 \\}
+\]</span></p>
+<p>**look back at lecture notes for bernoulli random variables</p>
 
 </main>
 <!-- /main column -->
