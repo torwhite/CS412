@@ -35,12 +35,12 @@ $$
 So, to test independence we can take 
 
 $$
-\displaylines{P(A,B) = P(A)P(B) \\
+\displaylines{P(A=1,B=1) = P(A=1)P(B=1) \\
    0.5 = 0.5 * 0.5 \\
    0.5 \neq .25}
 $$
 
-So $A$ & $B$ are **not** independent. 
+Because the test for $A=1$ and $B=1$ failed, it is not necessary to test for other values of $A$ and $B$ and we can conclude that $A$ & $B$ are **not** independent. 
 
 {{< pagebreak >}}
 
@@ -64,13 +64,50 @@ $$
 \displaylines{P(A|B,C) = P(A|C) \equiv \\ P(B|A,C) = P(B|C) \equiv \\P(A,B|C) = P(A|C)P(B|C)}
 $$
 
-First, 
+Using $P(A=1|B=1,C=1) = P(A=1|C=1)$:
+
+$P(A=1|B=1,C=1) = .096)$
+$P(A|C$
+
+First, find the probabilities of $A$, $B$, and $C$: 
 $$
 \displaylines{P(A) = P(A=1,B=0,C=0) + P(A=1,B=0,C=1) + P(A=1,B=1,C=0) + P(A=1,B=1,C=1) \\
 P(A) = .024 + .180 +.180 +.096 = .516}
 $$
 
-Look at : https://stats.libretexts.org/Bookshelves/Probability_Theory/Applied_Probability_(Pfeiffer)/05%3A_Conditional_Independence/5.01%3A_Conditional_Independence
+$$
+\displaylines{P(B) = P(A=0,B=1,C=0) + P(A=0,B=1,C=1) + P(A=1,B=1,C=0) + P(A=1,B=1,C=1) \\
+P(B) = .224 + .120 +.180 +.096 = .62}
+$$
+
+$$
+\displaylines{P(C) = P(A=0,B=0,C=1) + P(A=0,B=1,C=1) + P(A=1,B=0,C=1) + P(A=1,B=1,C=1) \\
+P(C) = .12 + .120 +.180 +.096 = .516}
+$$
+
+Now, to test for independence we can test $P(A,B|C) = P(A|C)P(B|C)$
+
+$$
+\displaylines{P(A,B|C) = P(A,B,C)/P(C) \\
+= .096 / .516 \\
+= .186}
+$$
+$$
+\displaylines{P(A|C) = P(A)P(C)/P(C) \\
+= (.516*.516) / .516 \\
+= .516 \\
+P(B|C) = P(B)*P(C)/P(C) \\
+= (.62*.516)/ .516 \\
+= .62 \\
+P(A|C)*P(B|C) = .320 \\}
+$$
+
+$.186 \neq .320$ so the statement A ⊥ B|C is **not** true. 
+
+
+
+$$
+
 
 {{< pagebreak >}}
 

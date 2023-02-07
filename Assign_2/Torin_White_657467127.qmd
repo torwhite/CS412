@@ -1,0 +1,39 @@
+---
+title: "Assignment 2"
+---
+
+1. Suppose our dataset consists of 100 positive examples and 100 negative examples.
+Our classifier constantly outputs the majority class of the training set (breaking tie arbitrarily).
+Then the leave-one-out cross validation error on the dataset is about 50%.
+Is this statement TRUE or FALSE? Please explanation accordingly.
+
+2. Consider a K-nearest neighbor classifier applied to the following dataset with six
+examples and four features:  
+
+|$x_{1}$|$x_{2}$|$x_{3}$|$x_{4}$|$y$ |  
+|:-----:|:------:|:----:|:-----:|:----:|  
+|3   |10   |2   |11  |Red |  
+|17  |-17  |9   |-1  |Blue|  
+|-4  |9    |-2  |-1  |Red |  
+|4   |0    |2   |-5  |Blue|  
+|8   |-1   |6   |-12 |Blue|  
+|19  |3    |23  |14  |Red |  
+
+a) [17 point] For a new testing example, x1 = 0.0, x2 = 0.0, x3 = 0.0, x4 = 0.0, write the distance to each of
+the training examples and indicate the prediction made by 1-NN and 3-NN using Euclidean distance.
+Remember to take the square root when computing the Euclidean distance.
+b) [17 point] For a new testing example, x1 = 0.0, x2 = 0.0, x3 = 0.0, x4 = 0.0, write the distance to each of
+the training examples and indicate the prediction made by 1-NN and 3-NN using Manhattan distance
+(i.e., L1 norm with ||x||1 = ∑ |xxii| 4
+
+ii=1 ; see page 14 of the slides of Linear Algebra).
+
+Q3 [33 pt]. Consider the following dataset with + and o classes.
+
+![+ and o classes plotted][Q3_plot.png]
+
+For each data point, consider a K-nearest neighbor classifier that is trained by using all the other
+data, except for that data point, and then used to predict the label for the withheld data point.
+a) [15 pt] What is the leave-one-out cross validation error rate when K = 1?
+b) [18 pt] What is the leave-one-out cross validation error rate when K = 3?
+You can visually identify the nearest neighbors without having to write out the distance.

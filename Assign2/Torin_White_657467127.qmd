@@ -1,0 +1,11 @@
+---
+title: "Assignment 2"
+---
+
+1. Suppose our dataset consists of 100 positive examples and 100 negative examples.
+Our classifier constantly outputs the majority class of the training set (breaking tie arbitrarily).
+Then the leave-one-out cross validation error on the dataset is about 50%.
+Is this statement TRUE or FALSE? Please explanation accordingly.
+
+2. Consider a K-nearest neighbor classifier applied to the following dataset with six
+examples and four features:
