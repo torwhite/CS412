@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.2.313">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -68,6 +68,7 @@ ul.task-list li input[type="checkbox"] {
 <table class="table">
 <thead>
 <tr class="header">
+<th style="text-align: center;">Sample(<span class="math inline">\(S\)</span>)</th>
 <th style="text-align: center;"><span class="math inline">\(x_{1}\)</span></th>
 <th style="text-align: center;"><span class="math inline">\(x_{2}\)</span></th>
 <th style="text-align: center;"><span class="math inline">\(x_{3}\)</span></th>
@@ -77,6 +78,7 @@ ul.task-list li input[type="checkbox"] {
 </thead>
 <tbody>
 <tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(S_{1}\)</span></td>
 <td style="text-align: center;">3</td>
 <td style="text-align: center;">10</td>
 <td style="text-align: center;">2</td>
@@ -84,6 +86,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: center;">Red</td>
 </tr>
 <tr class="even">
+<td style="text-align: center;"><span class="math inline">\(S_{2}\)</span></td>
 <td style="text-align: center;">17</td>
 <td style="text-align: center;">-17</td>
 <td style="text-align: center;">9</td>
@@ -91,6 +94,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: center;">Blue</td>
 </tr>
 <tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(S_{3}\)</span></td>
 <td style="text-align: center;">-4</td>
 <td style="text-align: center;">9</td>
 <td style="text-align: center;">-2</td>
@@ -98,6 +102,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: center;">Red</td>
 </tr>
 <tr class="even">
+<td style="text-align: center;"><span class="math inline">\(S_{4}\)</span></td>
 <td style="text-align: center;">4</td>
 <td style="text-align: center;">0</td>
 <td style="text-align: center;">2</td>
@@ -105,6 +110,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: center;">Blue</td>
 </tr>
 <tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(S_{5}\)</span></td>
 <td style="text-align: center;">8</td>
 <td style="text-align: center;">-1</td>
 <td style="text-align: center;">6</td>
@@ -112,6 +118,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: center;">Blue</td>
 </tr>
 <tr class="even">
+<td style="text-align: center;"><span class="math inline">\(S_{6}\)</span></td>
 <td style="text-align: center;">19</td>
 <td style="text-align: center;">3</td>
 <td style="text-align: center;">23</td>
@@ -122,11 +129,110 @@ ul.task-list li input[type="checkbox"] {
 </table>
 <ol type="a">
 <li>[17 point] For a new testing example, x1 = 0.0, x2 = 0.0, x3 = 0.0, x4 = 0.0, write the distance to each of the training examples and indicate the prediction made by 1-NN and 3-NN using Euclidean distance. Remember to take the square root when computing the Euclidean distance.</li>
+</ol>
+<p>calculating Euclidean distance:</p>
+<p>gives:</p>
+<table class="table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 28%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Sample(<span class="math inline">\(S\)</span>)</th>
+<th style="text-align: center;">calculation</th>
+<th style="text-align: center;">dist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(S_{1}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\sqrt{(3-0)^{2}+(10-0)^{2}+(2-0)^{2}+(11-0)^{2}} = \sqrt{234}\)</span></td>
+<td style="text-align: center;">15.30</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(S_{2}\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">25.69</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(S_{3}\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">10.10</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(S_{4}\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">6.71</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(S_{5}\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">15.65</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(S_{6}\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">33.09</td>
+</tr>
+</tbody>
+</table>
+<p>1-NN = <span class="math inline">\(S_{4}\)</span> = Blue<br>
+3-NN = majority of <span class="math inline">\(S_{4}\)</span>, $S_{3}, <span class="math inline">\(S_{1}\)</span> = Blue, Red, Red = Red</p>
+<ol start="2" type="a">
 <li>[17 point] For a new testing example, x1 = 0.0, x2 = 0.0, x3 = 0.0, x4 = 0.0, write the distance to each of the training examples and indicate the prediction made by 1-NN and 3-NN using Manhattan distance (i.e., L1 norm with ||x||1 = ∑ |xxii| 4</li>
 </ol>
 <p>ii=1 ; see page 14 of the slides of Linear Algebra).</p>
+<p>calculating Manhattan distance gives:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Sample(<span class="math inline">\(S\)</span>)</th>
+<th style="text-align: center;">calculation</th>
+<th style="text-align: center;">dist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(S_{1}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(|(3-0)| + |(10-0)| + |2-0| + |11-0|\)</span></td>
+<td style="text-align: center;">26</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(S_{2}\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">44</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(S_{3}\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(S_{4}\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(S_{5}\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(S_{6}\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
 <p>Q3 [33 pt]. Consider the following dataset with + and o classes.</p>
-<p>[+ and o classes plotted][Q3_plot.png]</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./Q3_plot.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">+ and o classes plotted</figcaption><p></p>
+</figure>
+</div>
 <p>For each data point, consider a K-nearest neighbor classifier that is trained by using all the other data, except for that data point, and then used to predict the label for the withheld data point. a) [15 pt] What is the leave-one-out cross validation error rate when K = 1? b) [18 pt] What is the leave-one-out cross validation error rate when K = 3? You can visually identify the nearest neighbors without having to write out the distance.</p>
 
 </main>

@@ -8,4 +8,64 @@ Then the leave-one-out cross validation error on the dataset is about 50%.
 Is this statement TRUE or FALSE? Please explanation accordingly.
 
 2. Consider a K-nearest neighbor classifier applied to the following dataset with six
-examples and four features:
+examples and four features:  
+
+|Sample($S$)|$x_{1}$|$x_{2}$|$x_{3}$|$x_{4}$|$y$ |  
+|:-:|:-----:|:------:|:----:|:-----:|:----:|  
+|$S_{1}$|3   |10   |2   |11  |Red |  
+|$S_{2}$|17  |-17  |9   |-1  |Blue|  
+|$S_{3}$|-4  |9    |-2  |-1  |Red |  
+|$S_{4}$|4   |0    |2   |-5  |Blue|  
+|$S_{5}$|8   |-1   |6   |-12 |Blue|  
+|$S_{6}$|19  |3    |23  |14  |Red |  
+
+ 
+
+
+a) [17 point] For a new testing example, x1 = 0.0, x2 = 0.0, x3 = 0.0, x4 = 0.0, write the distance to each of
+the training examples and indicate the prediction made by 1-NN and 3-NN using Euclidean distance.
+Remember to take the square root when computing the Euclidean distance.
+
+calculating Euclidean distance:
+
+
+gives:
+
+|Sample($S$)|calculation|dist| 
+|:-:|:--:|:-----:| 
+|$S_{1}$|$\sqrt{(3-0)^{2}+(10-0)^{2}+(2-0)^{2}+(11-0)^{2}} = \sqrt{234}$|15.30   |
+|$S_{2}$||25.69  |
+|$S_{3}$||10.10  | 
+|$S_{4}$||6.71 | 
+|$S_{5}$||15.65 | 
+|$S_{6}$||33.09  |  
+
+1-NN = $S_{4}$ = Blue  
+3-NN = majority of $S_{4}$, $S_{3}, $S_{1}$ = Blue, Red, Red = Red
+
+b) [17 point] For a new testing example, x1 = 0.0, x2 = 0.0, x3 = 0.0, x4 = 0.0, write the distance to each of
+the training examples and indicate the prediction made by 1-NN and 3-NN using Manhattan distance
+(i.e., L1 norm with ||x||1 = ∑ |xxii| 4
+
+ii=1 ; see page 14 of the slides of Linear Algebra).
+
+calculating Manhattan distance gives:
+
+|Sample($S$)|calculation|dist| 
+|:-:|:--:|:-----:| 
+|$S_{1}$|$|(3-0)| + |(10-0)| + |2-0| + |11-0|$|26   |
+|$S_{2}$||44  |
+|$S_{3}$||  | 
+|$S_{4}$||| 
+|$S_{5}$|| | 
+|$S_{6}$|| |  
+
+Q3 [33 pt]. Consider the following dataset with + and o classes.
+
+![+ and o classes plotted](./Q3_plot.png)
+
+For each data point, consider a K-nearest neighbor classifier that is trained by using all the other
+data, except for that data point, and then used to predict the label for the withheld data point.
+a) [15 pt] What is the leave-one-out cross validation error rate when K = 1?
+b) [18 pt] What is the leave-one-out cross validation error rate when K = 3?
+You can visually identify the nearest neighbors without having to write out the distance.
