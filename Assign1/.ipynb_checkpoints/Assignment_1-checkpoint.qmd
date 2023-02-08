@@ -1,0 +1,171 @@
+---
+title: "Assignment 1"
+
+---
+
+1. For the following distribution, is A ⊥ B (i.e., A and B are independent)? (33 points)
+
+|a |b |P(A=a,B=b)|
+|--|--|---|
+|0 |0 |0.5|
+|0 |1 |0.0|
+|1 |0| 0.0|
+|1 |1 |0.5|
+
+
+If $A$ & $B$ are independent then any of the following equations hold: 
+
+$$
+\displaylines{P(A|B) = P(A) \equiv \\ P(B|A) = P(B) \equiv \\P(A,B) = P(A)P(B)}
+$$
+
+First, find $P(A)$ and $P(B)$
+$$
+\displaylines{P(A) = P(A=1, B=0) + P(A=1, B=1) \\
+     P(A) = 0.0 + 0.5 \\
+     P(A) = 0.5 }
+$$
+
+$$
+\displaylines{P(B) = P(A=0, B=1)+ P(A=1, B=1) \\
+     P(B)= 0.0 + 0.5 \\
+     P(B) = 0.5}
+$$
+
+So, to test independence we can take 
+
+$$
+\displaylines{P(A=1,B=1) = P(A=1)P(B=1) \\
+   0.5 = 0.5 * 0.5 \\
+   0.5 \neq .25}
+$$
+
+Because the test for $A=1$ and $B=1$ failed, it is not necessary to test for other values of $A$ and $B$ and we can conclude that $A$ & $B$ are **not** independent. 
+
+{{< pagebreak >}}
+
+2. For the following distribution, is A ⊥ B|C (i.e., A and B are conditionally independent given C)? (33
+points)
+
+|a |b |c |P(A=a,B=b,C=c)|
+|--|--|--|--------------|
+|0 |0 |0 |0.056|
+|0 |0 |1 |0.120|
+|0 |1 |0 |0.224|
+|0 |1 |1 |0.120|
+|1 |0 |0 |0.024|
+|1 |0 |1 |0.180|
+|1 |1 |0 |0.180|
+|1 |1 |1 |0.096|
+
+
+$A$ and $B$ are conditionally independent given $C$ if any holds:
+$$
+\displaylines{P(A|B,C) = P(A|C) \equiv \\ P(B|A,C) = P(B|C) \equiv \\P(A,B|C) = P(A|C)P(B|C)}
+$$
+
+Using $P(A=1|B=1,C=1) = P(A=1|C=1)$:
+
+$P(A=1|B=1,C=1) = .096)$
+$P(A|C$
+
+First, find the probabilities of $A$, $B$, and $C$: 
+$$
+\displaylines{P(A) = P(A=1,B=0,C=0) + P(A=1,B=0,C=1) + P(A=1,B=1,C=0) + P(A=1,B=1,C=1) \\
+P(A) = .024 + .180 +.180 +.096 = .516}
+$$
+
+$$
+\displaylines{P(B) = P(A=0,B=1,C=0) + P(A=0,B=1,C=1) + P(A=1,B=1,C=0) + P(A=1,B=1,C=1) \\
+P(B) = .224 + .120 +.180 +.096 = .62}
+$$
+
+$$
+\displaylines{P(C) = P(A=0,B=0,C=1) + P(A=0,B=1,C=1) + P(A=1,B=0,C=1) + P(A=1,B=1,C=1) \\
+P(C) = .12 + .120 +.180 +.096 = .516}
+$$
+
+Now, to test for independence we can test $P(A,B|C) = P(A|C)P(B|C)$
+
+$$
+\displaylines{P(A,B|C) = P(A,B,C)/P(C) \\
+= .096 / .516 \\
+= .186}
+$$
+$$
+\displaylines{P(A|C) = P(A)P(C)/P(C) \\
+= (.516*.516) / .516 \\
+= .516 \\
+P(B|C) = P(B)*P(C)/P(C) \\
+= (.62*.516)/ .516 \\
+= .62 \\
+P(A|C)*P(B|C) = .320 \\}
+$$
+
+$.186 \neq .320$ so the statement A ⊥ B|C is **not** true. 
+
+
+
+$$
+
+
+{{< pagebreak >}}
+
+3. Consider two binary random variables A and B. If A ⊥ B (i.e., A and B are independent), and
+P(A = 0, B = 0) = 0.18 and P(A = 1, B = 0) = 0.28, what is the probability of P(A = 0, B = 1)?
+(34 points)
+
+|a |b |P(A=a,B=b)|
+|--|--|----------|
+|0 |0 |0.18|
+|0 |1 |n.a. ($x$)|
+|1 |0 |0.28|
+|1 |1 |n.a. ($y$)|
+
+From the given probabilities we know:
+
+$$
+\displaylines{P(B=0) = P(A=0,B=0) + P(A=1,B=0) \\
+P(B=0) = .18 + .28 \\
+P(B=0) = .46}
+$$
+
+Hence, 
+$$
+\displaylines{P(B=1) = 1- P(B=0) \\
+P(B=1) = 1 - .46 \\
+P(B=1) = .54 \\}
+$$
+
+Also, 
+
+$$ P(A) = .28 + y $$
+
+$$ \displaylines{P(A,B) = P(A)P(B) \\
+y = P(A).54 \\
+y = (.28 + y).54 \\
+y = .15 * .54y \\
+.46y = .15 \\
+y = .33 \\
+}
+$$
+
+So, 
+
+$$
+\displaylines{P(A=1) = P(A=1,B =0) + P(A=1,B=1) \\
+= .28  + .33 \\
+= .61 \\}
+$$
+$$
+\displaylines{P(A=0) = 1- P(A=1) \\
+= 1- .61 \\
+= .39}
+$$
+
+Now, find $P(A=0,B=1)$
+$$
+\displaylines{ P(A=0,B=1) = P(A=0) * P(B=1) \\
+= .39 * .54 \\
+= .21}
+$$

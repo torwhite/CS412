@@ -2,10 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.313">
+<meta name="generator" content="quarto-1.2.269">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Torin White - 657467127">
 
 <title>Assignment 2</title>
 <style>
@@ -53,6 +54,12 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Torin White - 657467127 </p>
+          </div>
+  </div>
     
   
     
@@ -62,13 +69,25 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 <ol type="1">
-<li><p>Suppose our dataset consists of 100 positive examples and 100 negative examples. Our classifier constantly outputs the majority class of the training set (breaking tie arbitrarily). Then the leave-one-out cross validation error on the dataset is about 50%. Is this statement TRUE or FALSE? Please explanation accordingly.</p></li>
-<li><p>Consider a K-nearest neighbor classifier applied to the following dataset with six examples and four features:</p></li>
+<li>Suppose our dataset consists of 100 positive examples and 100 negative examples. Our classifier constantly outputs the majority class of the training set (breaking tie arbitrarily). Then the leave-one-out cross validation error on the dataset is about 50%. Is this statement TRUE or FALSE? Please explanation accordingly.</li>
+</ol>
+<p>This statement is FALSE. Scaling down the example to illustrate, with 10 positive and 10 negative examples we see that each time we select training and test set we have either 1 positive or 1 negative example as the test set and then the training set has N positive and N-1 negative or vice versa, N negative and N-1 positive. This leaves the majority class of the training set as the class that the test set is not. Then the test set will be classified wrong each time the leave-one out validation error is calculated.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Q1_illustration.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Q1 illustration</figcaption><p></p>
+</figure>
+</div>
+<p>If the error is 1 when false and 0 when true, that means error rate = <span class="math inline">\(\frac{1}{n}\sum MSE_{i}\)</span></p>
+<p>with n = 200 and 1*n test sets classified wrong, the sum of the test error is 200, leaving the error rate to be <span class="math inline">\(\frac{1}{200}*200\)</span> = 1 or 100% error rate</p>
+<div style="page-break-after: always;"></div>
+<ol start="2" type="1">
+<li>Consider a K-nearest neighbor classifier applied to the following dataset with six examples and four features:</li>
 </ol>
 <table class="table">
 <thead>
 <tr class="header">
-<th style="text-align: center;">Sample(<span class="math inline">\(S\)</span>)</th>
+<th style="text-align: center;">example(<span class="math inline">\(e\)</span>)</th>
 <th style="text-align: center;"><span class="math inline">\(x_{1}\)</span></th>
 <th style="text-align: center;"><span class="math inline">\(x_{2}\)</span></th>
 <th style="text-align: center;"><span class="math inline">\(x_{3}\)</span></th>
@@ -78,7 +97,7 @@ ul.task-list li input[type="checkbox"] {
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(S_{1}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(e_{1}\)</span></td>
 <td style="text-align: center;">3</td>
 <td style="text-align: center;">10</td>
 <td style="text-align: center;">2</td>
@@ -86,7 +105,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: center;">Red</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"><span class="math inline">\(S_{2}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(e_{2}\)</span></td>
 <td style="text-align: center;">17</td>
 <td style="text-align: center;">-17</td>
 <td style="text-align: center;">9</td>
@@ -94,7 +113,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: center;">Blue</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(S_{3}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(e_{3}\)</span></td>
 <td style="text-align: center;">-4</td>
 <td style="text-align: center;">9</td>
 <td style="text-align: center;">-2</td>
@@ -102,7 +121,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: center;">Red</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"><span class="math inline">\(S_{4}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(e_{4}\)</span></td>
 <td style="text-align: center;">4</td>
 <td style="text-align: center;">0</td>
 <td style="text-align: center;">2</td>
@@ -110,7 +129,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: center;">Blue</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(S_{5}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(e_{5}\)</span></td>
 <td style="text-align: center;">8</td>
 <td style="text-align: center;">-1</td>
 <td style="text-align: center;">6</td>
@@ -118,7 +137,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: center;">Blue</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"><span class="math inline">\(S_{6}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(e_{6}\)</span></td>
 <td style="text-align: center;">19</td>
 <td style="text-align: center;">3</td>
 <td style="text-align: center;">23</td>
@@ -140,100 +159,129 @@ ul.task-list li input[type="checkbox"] {
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: center;">Sample(<span class="math inline">\(S\)</span>)</th>
+<th style="text-align: center;">example(<span class="math inline">\(e\)</span>)</th>
 <th style="text-align: center;">calculation</th>
 <th style="text-align: center;">dist</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(S_{1}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(e_{1}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\sqrt{(3-0)^{2}+(10-0)^{2}+(2-0)^{2}+(11-0)^{2}} = \sqrt{234}\)</span></td>
 <td style="text-align: center;">15.30</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"><span class="math inline">\(S_{2}\)</span></td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(e_{2}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\sqrt{(17-0)^{2}+(-17-0)^{2}+(9-0)^{2}+(1-0)^{2}} = \sqrt{660}\)</span></td>
 <td style="text-align: center;">25.69</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(S_{3}\)</span></td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(e_{3}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\sqrt{(-4-0)^{2}+(9-0)^{2}+(-2-0)^{2}+(-1-0)^{2}} = \sqrt{102}\)</span></td>
 <td style="text-align: center;">10.10</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"><span class="math inline">\(S_{4}\)</span></td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(e_{4}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\sqrt{(4-0)^{2}+(0-0)^{2}+(2-0)^{2}+(-5-0)^{2}} = \sqrt{45}\)</span></td>
 <td style="text-align: center;">6.71</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(S_{5}\)</span></td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(e_{5}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\sqrt{(8-0)^{2}+(-1-0)^{2}+(6-0)^{2}+(-12-0)^{2}} = \sqrt{245}\)</span></td>
 <td style="text-align: center;">15.65</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"><span class="math inline">\(S_{6}\)</span></td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(e_{6}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\sqrt{(19-0)^{2}+(3-0)^{2}+(23-0)^{2}+(14-0)^{2}} = \sqrt{1095}\)</span></td>
 <td style="text-align: center;">33.09</td>
 </tr>
 </tbody>
 </table>
-<p>1-NN = <span class="math inline">\(S_{4}\)</span> = Blue<br>
-3-NN = majority of <span class="math inline">\(S_{4}\)</span>, $S_{3}, <span class="math inline">\(S_{1}\)</span> = Blue, Red, Red = Red</p>
+<p>1-NN = <span class="math inline">\(e_{4}\)</span> = Blue, so the new testing example is classified as <strong>Blue</strong></p>
+<p>3-NN = new testing example is classified majority of <span class="math inline">\(e_{4}\)</span>, <span class="math inline">\(e_{3}\)</span>, <span class="math inline">\(e_{1}\)</span> = Blue, Red, Red, so the new testing example is classified as <strong>Red</strong></p>
 <ol start="2" type="a">
-<li>[17 point] For a new testing example, x1 = 0.0, x2 = 0.0, x3 = 0.0, x4 = 0.0, write the distance to each of the training examples and indicate the prediction made by 1-NN and 3-NN using Manhattan distance (i.e., L1 norm with ||x||1 = ∑ |xxii| 4</li>
+<li>[17 point] For a new testing example, x1 = 0.0, x2 = 0.0, x3 = 0.0, x4 = 0.0, write the distance to each of the training examples and indicate the prediction made by 1-NN and 3-NN using Manhattan distance (i.e., L1 norm with <span class="math inline">\(||x||_{1} = ∑^{4}_{i=1}|x_{i}|\)</span>); see page 14 of the slides of Linear Algebra).</li>
 </ol>
-<p>ii=1 ; see page 14 of the slides of Linear Algebra).</p>
 <p>calculating Manhattan distance gives:</p>
 <table class="table">
 <thead>
 <tr class="header">
-<th style="text-align: center;">Sample(<span class="math inline">\(S\)</span>)</th>
+<th style="text-align: center;">example(<span class="math inline">\(e\)</span>)</th>
 <th style="text-align: center;">calculation</th>
 <th style="text-align: center;">dist</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(S_{1}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(e_{1}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(|(3-0)| + |(10-0)| + |2-0| + |11-0|\)</span></td>
 <td style="text-align: center;">26</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"><span class="math inline">\(S_{2}\)</span></td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(e_{2}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(|(17-0)| + |(-17-0)| + |9-0| + |-1-0|\)</span></td>
 <td style="text-align: center;">44</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(S_{3}\)</span></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(e_{3}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(|(-4-0)| + |(9-0)| + |-2-0| + |-1-0|\)</span></td>
+<td style="text-align: center;">16</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"><span class="math inline">\(S_{4}\)</span></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(e_{4}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(|(4-0)| + |(0-0)| + |2-0| + |-5-0|\)</span></td>
+<td style="text-align: center;">11</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(S_{5}\)</span></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(e_{5}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(|(8-0)| + |(-1-0)| + |6-0| + |-12-0|\)</span></td>
+<td style="text-align: center;">27</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"><span class="math inline">\(S_{6}\)</span></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(e_{6}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(|(19-0)| + |(3-0)| + |23-0| + |14-0|\)</span></td>
+<td style="text-align: center;">59</td>
 </tr>
 </tbody>
 </table>
-<p>Q3 [33 pt]. Consider the following dataset with + and o classes.</p>
+<p>1-NN = <span class="math inline">\(e_{4}\)</span> = Blue, so the new testing example is classified as <strong>Blue</strong> 3-NN = new testing example is classified majority of <span class="math inline">\(e_{4}\)</span>, <span class="math inline">\(e_{3}\)</span>, <span class="math inline">\(e_{1}\)</span> = Blue, Red, Red, so the new testing example is classified as <strong>Red</strong></p>
+<div style="page-break-after: always;"></div>
+<ol start="3" type="1">
+<li>[33 pt]. Consider the following dataset with + and o classes.</li>
+</ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./Q3_plot.png" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">+ and o classes plotted</figcaption><p></p>
 </figure>
 </div>
-<p>For each data point, consider a K-nearest neighbor classifier that is trained by using all the other data, except for that data point, and then used to predict the label for the withheld data point. a) [15 pt] What is the leave-one-out cross validation error rate when K = 1? b) [18 pt] What is the leave-one-out cross validation error rate when K = 3? You can visually identify the nearest neighbors without having to write out the distance.</p>
+<p>For each data point, consider a K-nearest neighbor classifier that is trained by using all the other data, except for that data point, and then used to predict the label for the withheld data point.</p>
+<p>For leave-one-out cross validation error rate we take each sample, predict the label based on <span class="math inline">\(k\)</span> nearest neighbors, find the test error for each test set, and then take the average of all error rates.</p>
+<p>error rate = <span class="math inline">\(\frac{1}{n}\sum MSE_{i}\)</span></p>
+<p>because there are 2 classes, test error is <span class="math inline">\(1\)</span> if false prediction and <span class="math inline">\(0\)</span> if true prediction.</p>
+<ol type="a">
+<li>[15 pt] What is the leave-one-out cross validation error rate when K = 1?</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./Q3_plot_1NN.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">1-NN</figcaption><p></p>
+</figure>
+</div>
+<p>All test examples are predicted wrong for <span class="math inline">\(k = 1\)</span> so test error = <span class="math inline">\(1n\)</span> = 10</p>
+<p>averaging to get error rate = <span class="math inline">\(\frac{1}{10}*10\)</span> = 1 or 100%</p>
+<ol start="2" type="a">
+<li>[18 pt] What is the leave-one-out cross validation error rate when K = 3?</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./Q3_plot_3NN.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">3-NN</figcaption><p></p>
+</figure>
+</div>
+<p>For <span class="math inline">\(k = 3\)</span> also, no test examples classes are predicted correctly so none match the true class of the sample. So the same error rate applies:</p>
+<p><span class="math inline">\(\sum\)</span> test error = <span class="math inline">\(1n\)</span> = 10</p>
+<p>averaging to get error rate = <span class="math inline">\(\frac{1}{10}*10\)</span> = 1 or 100%</p>
 
 </main>
 <!-- /main column -->
