@@ -1,0 +1,28 @@
+---
+title: "Assignment 4 reference"
+---
+
+![table 5.1](./Table5.1.png)
+![parametric classification](./parametric_classification.png)
+
+![exercise 5.4](./Exercise5.4.png)
+
+Recitation [5@ 27:27 min](https://uic.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=63a8ef4d-17af-45a5-a644-afb10138f3f2) 
+
+we have prior probability
+
+for two classes, both guassian
+
+$P(x|C_{1})$ and $P(x|C_{2})$
+
+$~N_{d}(\mu_{1},\Sigma_{1})$ $~N_{d}(\mu_{2},\Sigma_{2})$ 
+
+Using Bayes:
+
+$\frac{P(C_{i})P(x|C_{i})}{P(x)}$
+
+want to output higher class, P(x) doesn't matter so toss. *C = constant
+
+$g_{i}(x) = P(C_{i}|x) = P(C_{i})P(x|C_{i})*C$
+
+Lecture: [Chapter 5: Multivariate Methods:](https://piazza.com/class_profile/get_resource/lcgqylfo8lq3ej/le4vcjhna3z6h1) 

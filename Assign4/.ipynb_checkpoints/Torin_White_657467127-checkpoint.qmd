@@ -1,0 +1,175 @@
+---
+title: "Assignment 4"
+author: Torin White - 657467127
+header-includes:
+    - \usepackage[utf8]{inputenc}
+    - \usepackage{amsmath}
+    - \usepackage{mathrsfs}
+---
+
+
+## Q1
+**[Ex 5 of Chapter 5 of Alpaydin] In addition to Table 5.1, another possibility using Gaussian densities
+is to have the covariance of $p(x|Ci)$ all diagonal but allow them to be different for different i. Denote the
+covariance matrix of $p(x|Ci)$ as $diag(s^{2}_{i1},s^{2}_{i2}, ... , s^{2}_{id})$
+where diag turns a vector into a diagonal matrix.**
+
+The covariance matrix of $p(x|Ci)$ as $diag(s^{2}_{i1},s^{2}_{i2}, ... , s^{2}_{id})$ may be denoted as:
+
+
+$$
+\Sigma_{i} = 
+\begin{bmatrix} 
+S^{2}_{i1} & 0 & ... & 0 \\
+0 & S^{2}_{i2} & ... &0\\
+... & ... & ... & ...\\
+0 & 0 & ... & S^{2}_{id}\\
+\end{bmatrix}
+\quad
+$$
+
+
+
+### a) 
+**Derive the discriminant gi for this case. (50 points)**
+
+With prior probability $P(x|C_{1})$ with Guassian distribution $\sim\mathcal{N}_{d}(\mu_{1},\Sigma_{1})$ and $P(x|C_{2})$ with Guassian distribution $\sim\mathcal{N}_{d}(\mu_{2},\Sigma_{2})$ 
+
+the discriminant function is:
+
+$g_{i}(x) = P(C_{i}|X) = P(C_{i})P(X|C_{i})*C$
+
+taking the log of $g_{i}(x)$
+
+$\log g_i(x) \triangleq \log P(C_i | X) = \log P(C_i) + \log P(X | C_i) + \log C$
+
+plugging in the density function:
+
+$p(\boldsymbol{x}) = \frac{1}{(2\pi)^{d/2} |\boldsymbol{\Sigma}|^{1/2}} \exp\left(-\frac{1}{2} (\boldsymbol{x} - \boldsymbol{\mu})^T \boldsymbol{\Sigma}^{-1} (\boldsymbol{x} - \boldsymbol{\mu}) \right)$
+
+we get:
+
+$\log g_i(x) \triangleq \log P(C_i) + \frac{1}{(2\pi)^{d/2} |\boldsymbol{\Sigma_{i}}|^{1/2}} \exp\left(-\frac{1}{2} (\boldsymbol{x} - \boldsymbol{\mu_{i}})^T \boldsymbol{\Sigma_{i}}^{-1} (\boldsymbol{x} - \boldsymbol{\mu_{i}}) \right)$
+
+
+For this case of the diagonal covariance matrices: 
+
+$$
+\Sigma_{1} = 
+\begin{bmatrix} 
+S^{2}_{i1} & 0 & ... & 0 \\
+0 & S^{2}_{i2} & ... &0\\
+... & ... & ... & ...\\
+0 & 0 & ... & S^{2}_{id}\\
+\end{bmatrix}
+\quad
+$$
+
+$$
+\Sigma_{2} = 
+\begin{bmatrix} 
+S^{2}_{i1} & 0 & ... & 0 \\
+0 & S^{2}_{i2} & ... &0\\
+... & ... & ... & ...\\
+0 & 0 & ... & S^{2}_{id}\\
+\end{bmatrix}
+\quad
+$$
+
+
+find the determinant of $\Sigma_{i}$
+
+ $|\Sigma_i| = \prod_{i=1}^d S_{i}^2$
+ 
+$\log g_i(x) \triangleq \log P(C_i) + \frac{1}{(2\pi)^{d/2} |\prod_{i=1}^d S_{i}^2|^{1/2}} \exp\left(-\frac{1}{2} (\boldsymbol{x} - \boldsymbol{\mu_{i}})^T \boldsymbol{\Sigma_{i}}^{-1} (\boldsymbol{x} - \boldsymbol{\mu_{i}}) \right)$
+
+find the inverse of $\Sigma_{i}$
+
+$\Sigma_1^{-1} = 
+\begin{bmatrix} 
+\frac{1}{S^{2}_{i1}} & 0 & ... & 0 \\
+0 & \frac{1}{S^{2}_{i2}} & ... &0\\
+... & ... & ... & ...\\
+0 & 0 & ... & \frac{1}{S^{2}_{id}}\\
+\end{bmatrix}
+\quad$
+
+then,
+
+$(\boldsymbol{x} - \boldsymbol{\mu_{i}})^T \boldsymbol{\Sigma_{i}}^{-1} (\boldsymbol{x} - \boldsymbol{\mu_{i}})$ 
+
+simplifies to $\sum_{j=1}^{d} \frac{(x_j - \mu_{ij})^2}{S^2_{ij}}$
+
+then plugging into discriminant function:
+
+$\log g_i(x) \triangleq \log P(C_i) + \frac{1}{(2\pi)^{d/2} |\prod_{i=1}^d S_{i}^2|^{1/2}} \exp-{\frac{1}{2}\sum_{j=1}^{d}\frac{(x_j-\mu_{ij})^2}{S_{ij}^2}}$
+
+
+
+### b) 
+**When does the separating boundary become linear (instead of quadratic)? (50 points)**
+
+For the case of linear boundary, set $P(C_{1}|X) = P(C_{2}|X)$ or $g_{1}(x) = g_{2}(x)$ . For the boundary to be linear, the quadratic portion of the equation must cancel. So looking at 
+
+$(\boldsymbol{x} - \boldsymbol{\mu_{1}})^T \boldsymbol{\Sigma_{1}}^{-1} (\boldsymbol{x} - \boldsymbol{\mu_{1}})$ = $(\boldsymbol{x} - \boldsymbol{\mu_{2}})^T \boldsymbol{\Sigma_{2}}^{-1} (\boldsymbol{x} - \boldsymbol{\mu_{2}})$ 
+
+or 
+
+$\sum_{j=1}^{d} \frac{(x_j - \mu_{1j})^2}{S^2_{1j}} = \sum_{j=1}^{d} \frac{(x_j - \mu_{2j})^2}{S^2_{2j}}$
+
+the boundary is linear if $S_{1j}^{2} = S_{2j}^{2}$. Then we are left with:
+
+$\sum_{j=1}^{d} (x_j - \mu_{1j})^2 = \sum_{j=1}^{d} (x_j - \mu_{2j})^2$ = 
+
+$\sum_{j=1}^{d} x_j^2 -2x_j\mu_{1j} + \mu_{1j}^2 = \sum_{j=1}^{d} x_j^2 -2x_j\mu_{2j} + \mu_{2j}^2$ =
+
+
+$\sum_{j=1}^{d} -2x_j\mu_{1j} + \mu_{1j}^2 = \sum_{j=1}^{d}  -2x_j\mu_{2j} + \mu_{2j}^2$
+
+which leaves no quadratic terms, making the boundary linear.
+
+
+
+## Q2
+**[Exercise 5.4 of Alpaydin] But instead of four cases, do it only for the case of $\Sigma1 ≠ \Sigma2$. You need to
+derive the expression of $log\frac{P(C_1|x)}{P(C_2|x)}$ using $\Sigma$ and $\mu_{i}$, and simplify it as much as possible. There
+is no need to derive the condition for the boundary to be linear. (60 points)**
+
+
+$\log g_i(x) \triangleq \log P(C_i) + \frac{1}{(2\pi)^{d/2} |\boldsymbol{\Sigma_{i}}|^{1/2}} \exp\left(-\frac{1}{2} (\boldsymbol{x} - \boldsymbol{\mu_{i}})^T \boldsymbol{\Sigma_{i}}^{-1} (\boldsymbol{x} - \boldsymbol{\mu_{i}}) \right)$
+
+First, simplify:
+
+$$(\boldsymbol{x} - \boldsymbol{\mu_{i}})^T \boldsymbol{\Sigma_{i}}^{-1} (\boldsymbol{x} - \boldsymbol{\mu_{i}})$$ =
+
+$$ x^T\Sigma_{i}^{-1}x - \mu_{i}^T\Sigma_{i}^{-1}x - x^T\Sigma_{i}^{-1}\mu_{i} + \mu_{i}^T\Sigma_{i}^{-1}\mu_{i} $$
+
+Taking the transpose of $\mu_{i}^T\Sigma_{i}^{-1}x$ we get $x^T\Sigma_i^{-1}\mu_i$:
+
+$$ x^T\Sigma_{i}^{-1}x - x^T\Sigma_{i}^{-1}\mu_{i} - x^T\Sigma_{i}^{-1}\mu_{i} + \mu_{i}^T\Sigma_{i}^{-1}\mu_{i}
+$$
+= 
+
+$$ x^T\Sigma_{i}^{-1}x - 2x^T\Sigma_{i}^{-1}\mu_{i} + \mu_{i}^T\Sigma_{i}^{-1}\mu_{i} $$
+
+
+the full expression is: 
+
+$\log g_i(x) \triangleq \log P(C_i) + \frac{1}{(2\pi)^{d/2} |\boldsymbol{\Sigma_{i}}|^{1/2}} \exp\left(-\frac{1}{2} (x^T\Sigma_{i}^{-1}x - 2x^T\Sigma_{i}^{-1}\mu_{i} + \mu_{i}^T\Sigma_{i}^{-1}\mu_{i}) \right)$
+
+
+Now, derive $log\frac{P(C_1|x)}{P(C_2|x)} = \frac{\log{g_1}(x)}{\log{g_2}(x)}$ = 
+
+$$ 
+\frac{\log P(C_1)}{\log P(C_2)} + \frac{\frac{1}{(2\pi)^{d/2} |\boldsymbol{\Sigma_{1}}|^{1/2}}\exp\left(-\frac{1}{2} (x^T\Sigma_{1}^{-1}x - 2x^T\Sigma_{1}^{-1}\mu_{1} + \mu_{1}^T\Sigma_{1}^{-1}\mu_{1}) \right)}{\frac{1}{(2\pi)^{d/2} |\boldsymbol{\Sigma_{2}}|^{1/2}}\exp\left(-\frac{1}{2} (x^T\Sigma_{2}^{-1}x - 2x^T\Sigma_{2}^{-1}\mu_{2} + \mu_{2}^T\Sigma_{2}^{-1}\mu_{2}) \right)}
+$$
+
+$(2\pi)^{d/2}$ cancels out leaving:
+
+$$
+\frac{\log P(C_1)}{\log P(C_2)} + \frac{|\boldsymbol{\Sigma_{2}}|^{1/2} \exp\left(-\frac{1}{2} (x^T\Sigma_{1}^{-1}x - 2x^T\Sigma_{1}^{-1}\mu_{1} + \mu_{1}^T\Sigma_{1}^{-1}\mu_{1})\right)}{|\boldsymbol{\Sigma_{1}}|^{1/2}\exp\left(-\frac{1}{2} (x^T\Sigma_{2}^{-1}x - 2x^T\Sigma_{2}^{-1}\mu_{2} + \mu_{2}^T\Sigma_{2}^{-1}\mu_{2})\right)}
+$$
+
+
+
+
