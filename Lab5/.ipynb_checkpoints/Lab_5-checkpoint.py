@@ -147,16 +147,26 @@ def conditional_prob(X_train, y_train):
     """
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
     # docs with label '0' to ham, '1' to spam list
+    labels = np.unique(y_train)
+    X_train = pd.Series(X_train)
+    y_train = pd.Series(y_train)
     num_train = len(X_train)
+    
+    #FIXME add general case for creating the nested dict
     cond_prob = {0: {} , 1: {}} 
+
+    # empty list with training examples of label 0
     ham = []
+    # empty list with training examples of label 1
     spam = []
-    for i in range(num_train):
+
+    # FIXME general case
+    for i, v in X_train.items():
         if y_train[i] == 0:
             ham.append(X_train[i])
         else:
             spam.append(X_train[i])
-            
+     
     # compute frequency in docs
     freq_ham = count_frequency(ham)
     
@@ -184,9 +194,10 @@ def conditional_prob(X_train, y_train):
     # add dummy case for spam 
     cond_prob[1]['dummy'] = add_smooth(0, count_spam)
     
-    # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-
+    # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****   
+ 
     return cond_prob
+
 
 
 def predict_label(X_test, prior_prob, cond_prob):
@@ -207,11 +218,11 @@ def predict_label(X_test, prior_prob, cond_prob):
     """
     from scipy.special import softmax
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-    # initialize variables used in function
     num_test = len(X_test)
     num_class = len(prior_prob)
     # empty list to hold test probs calculated each index is a class
     prob = np.empty((num_test, num_class))
+    predict = np.empty(num_test)
  
     # predict label
     # iterate over all entries in X_test 
@@ -222,15 +233,24 @@ def predict_label(X_test, prior_prob, cond_prob):
         for j in range(num_class):
             # calculate sum of log probabilities
             prob[i][j] = compute_test_prob(word_count, prior_prob[j],cond_prob[j])
-            
-    # predict is argmax of each row of log_prob
-    predict = np.argmax(prob, axis=1)
-            
+     
+    
+    # predict is argmax of each row of prob
+    predict = prob.argmax(axis=1)
+
     # calculate posterior probability, subtract predict for computational ease
-    test_prob = softmax(prob - predict)
+    # create empty matrix for calculation
+    prob_minus_m = np.empty((num_test, num_class))
+    for i in range(num_test):
+        m = prob[i][predict[i]]
+        vm = np.full((num_class, ), m)
+        prob_minus_m[i] = vm
+    
+    test_prob = softmax(prob - vm)
     
     # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
     return predict, test_prob
+  
 
 def compute_test_prob(word_count, prior_cat, cond_cat):
     """
@@ -248,11 +268,11 @@ def compute_test_prob(word_count, prior_cat, cond_cat):
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
     log_cond_prob = 0
     # fetch cond prob of each word in i of x_test from cond prob dict
-    for w, prob in word_count.items():
+    for w, n in word_count.items():
         if w in cond_cat:
-            log_cond_prob +=  prob * np.log(prob * cond_cat[w])
+            log_cond_prob +=  n * np.log(cond_cat[w])
         else:
-            log_cond_prob +=  prob * np.log(prob * cond_cat['dummy'])
+            log_cond_prob +=  n * np.log(cond_cat['dummy'])
      
     prob = np.log(prior_cat) + log_cond_prob
     # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
@@ -270,6 +290,17 @@ def compute_metrics(y_pred, y_true):
     - f1: f1_score
     """
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-
+    from sklearn.metrics import accuracy_score
+    # compute accuracy
+    acc = accuracy_score(y_true, y_pred)
+    
+    # confusion matrix
+    from sklearn.metrics import confusion_matrix
+    cm = confusion_matrix(y_true, y_pred)
+    
+    # f1 score
+    from sklearn.metrics import f1_score
+    f1 = f1_score(y_true, y_pred)
+    
     # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
     return acc, cm, f1
