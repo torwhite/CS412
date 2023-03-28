@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Torin White - 657467127">
+
+<title>Assignment 6</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="Torin_White_657467127_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Torin_White_657467127_files/libs/quarto-html/quarto.js"></script>
+<script src="Torin_White_657467127_files/libs/quarto-html/popper.min.js"></script>
+<script src="Torin_White_657467127_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Torin_White_657467127_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Torin_White_657467127_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Torin_White_657467127_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Torin_White_657467127_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Torin_White_657467127_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Torin_White_657467127_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Assignment 6</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Torin White - 657467127 </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="q1-70-pt-ex-7.1-of-alpaydin" class="level2">
+<h2 class="anchored" data-anchor-id="q1-70-pt-ex-7.1-of-alpaydin">Q1 [70 pt, Ex 7.1 of Alpaydin]</h2>
+<p>In image compression, <span class="math inline">\(k\)</span>-means can be used as follows. Suppose all the <span class="math inline">\(N\)</span> images are sized <span class="math inline">\(n\)</span> pixels by <span class="math inline">\(n\)</span> pixels, and each pixel is represented by <span class="math inline">\(d = 24\)</span> bits. The image is divided into nonoverlapping <span class="math inline">\(c×c\)</span> windows and these <span class="math inline">\(c^2\)</span>-dimensional vectors make up the sample. Suppose <span class="math inline">\(c\)</span> wholly divides <span class="math inline">\(n\)</span>. For a given <span class="math inline">\(k\)</span>, which is generally a power of two, we do k-means clustering. The reference vectors and the indices for each window are sent over the communication line. At the receiving end, the image is then reconstructed by reading from the table of reference vectors using the indices.</p>
+<section id="a-50-pt-write-the-pseudo-code-that-does-this-for-different-values-of-k-and-c.-your-code-only-needs-to-cover-the-construction-of-the-training-set-for-clustering-followed-by-the-k-means-clustering-algorithm.-no-need-of-sending-and-receivingreconstructing-the-images." class="level3">
+<h3 class="anchored" data-anchor-id="a-50-pt-write-the-pseudo-code-that-does-this-for-different-values-of-k-and-c.-your-code-only-needs-to-cover-the-construction-of-the-training-set-for-clustering-followed-by-the-k-means-clustering-algorithm.-no-need-of-sending-and-receivingreconstructing-the-images.">(a) [50 pt] Write the pseudo-code that does this for different values of <span class="math inline">\(k\)</span> and <span class="math inline">\(c\)</span>. Your code only needs to cover the construction of the training set for clustering, followed by the k-means clustering algorithm. No need of sending and receiving/reconstructing the images.</h3>
+<pre><code># set initial variables 
+X = [] # empty list
+k =    # prototypes, power of 2
+N =    # images
+n =    # number of pixels height and width (square), divisible by c
+c =    # divisions of n to create windows/patches
+
+# Step 1: Construct dataset X
+FOR i = 1 ... N-1              # iterate over N images
+    FOR r = 1 ... n/c - 1      # iterate over rows of image N
+        FOR t = 1 ... n/c -1   # iterate over cols of image N
+            ADD coordinate r, t to X
+            
+# Step 2: Construct prototype
+v = random.sample(X, k)        # randomly select coordinates of X of k # of values for
+b = []                         # initialize empty list to hold labels of closest vi
+
+# loop will run until values of vi...k converge
+REPEAT
+    # loop over elements of X and compute closest value in vector vi ... k-1
+    FOR i = 1 ... len(X)-1        # iterate over dataset X
+        COMPUTE distance between Xi and centroid values in v
+        COMPUTE argmin of distances between Xi and vi...k-1
+        ADD result of argmin value to list b as label for Xi
+    
+    # find new centroid for vi...k-1 by taking mean of labels in b
+    FOR j = 1 .... len(k)-1
+        COMPUTE mean of values of X of jth element of b and reassign to jth value of v
+
+UNTIL vi ...k converge
+
+#Step 3: Sending algorithm
+    NOT PART of Q1.a
+    
+# Step 4: Reconstruction on receiving end
+    NOT PART of Q1.a
+</code></pre>
+</section>
+<section id="b-20-pt-calculate-the-compression-ratio-in-terms-of-n-c-k-n-d" class="level3">
+<h3 class="anchored" data-anchor-id="b-20-pt-calculate-the-compression-ratio-in-terms-of-n-c-k-n-d">(b) [20 pt] Calculate the compression ratio in terms of <span class="math inline">\(n, c, k, N, d\)</span></h3>
+<p><span class="math inline">\(n\)</span> = integer divisible by c<br>
+<span class="math inline">\(c\)</span> = # of divisions of n to form n/c x n/c windows<br>
+<span class="math inline">\(k\)</span> = # of clusters, power of two<br>
+<span class="math inline">\(N\)</span> - # of images<br>
+<span class="math inline">\(d\)</span> = bit depth = 24</p>
+<p>orginal image file size = <span class="math inline">\(pixels*d\)</span></p>
+<p>for N images of <span class="math inline">\(n x n = N * n^2 * d\)</span></p>
+<p>compressed file size = <span class="math inline">\((\frac{n}{c})^2log_2k + kd\)</span></p>
+<p><span class="math inline">\(compression ratio = \frac{uncompressed image size}{compressed image size}\)</span></p>
+<p><span class="math inline">\(compression ratio = \frac{Nn^2d}{(\frac{n}{c})^2log_2k + kd}\)</span> <em>where k</em>d is the space needed to save the prototype/decoder values</p>
+<p></p>
+</section>
+</section>
+<section id="q2.-given-a-set-of-three-points-2-0-and-10-we-want-to-use-k-means-clustering-with-k-2-to-cluster-them-into-two-clusters." class="level2">
+<h2 class="anchored" data-anchor-id="q2.-given-a-set-of-three-points-2-0-and-10-we-want-to-use-k-means-clustering-with-k-2-to-cluster-them-into-two-clusters.">Q2. Given a set of three points, –2, 0, and 10, we want to use k-means clustering with <span class="math inline">\(k == 2\)</span> to cluster them into two clusters.</h2>
+<section id="a-20-pt-if-the-initial-cluster-centers-are-c1-4.0-and-c2-1.0-show-two-iterations-of-k-means-clusteringindicating-at-each-iteration-which-points-belong-to-each-cluster-and-the-coordinates-of-the-two-new-cluster" class="level3">
+<h3 class="anchored" data-anchor-id="a-20-pt-if-the-initial-cluster-centers-are-c1-4.0-and-c2-1.0-show-two-iterations-of-k-means-clusteringindicating-at-each-iteration-which-points-belong-to-each-cluster-and-the-coordinates-of-the-two-new-cluster">(a) [20 pt] If the initial cluster centers are C1 = –4.0 and C2 = 1.0, show two iterations of k-means clustering,indicating at each iteration which points belong to each cluster and the coordinates of the two new cluster</h3>
+<p>centers. In other words, fill in the tables below.</p>
+<section id="iteration-1" class="level4">
+<h4 class="anchored" data-anchor-id="iteration-1">Iteration 1:</h4>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Point</th>
+<th>Cluster (C1 or C2)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>-2</td>
+<td>C1</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>C2</td>
+</tr>
+<tr class="odd">
+<td>10</td>
+<td>C2</td>
+</tr>
+</tbody>
+</table>
+<p>New cluster centers:</p>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td>C1 = -2</td>
+<td>C2 = 5</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iteration-2" class="level4">
+<h4 class="anchored" data-anchor-id="iteration-2">Iteration 2:</h4>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Point</th>
+<th>Cluster (C1 or C2)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>-2</td>
+<td>C1</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>C1</td>
+</tr>
+<tr class="odd">
+<td>10</td>
+<td>C2</td>
+</tr>
+</tbody>
+</table>
+<p>New cluster centers:</p>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td>C1 = -1</td>
+<td>C2 = 10</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="b-10-true-or-false-in-general-a-good-way-to-pick-the-best-number-of-clusters-k-used-for-k-means-clustering-is-to-try-multiple-values-of-k-and-select-the-value-of-k-at-the-elbow-of-the-monotonically-decreasing-curve-of-reconstruction-error-as-a-function-of-k.-briefly-explain-why." class="level3">
+<h3 class="anchored" data-anchor-id="b-10-true-or-false-in-general-a-good-way-to-pick-the-best-number-of-clusters-k-used-for-k-means-clustering-is-to-try-multiple-values-of-k-and-select-the-value-of-k-at-the-elbow-of-the-monotonically-decreasing-curve-of-reconstruction-error-as-a-function-of-k.-briefly-explain-why.">(b) [10] True or False: In general, a good way to pick the best number of clusters, k, used for k-means clustering is to try multiple values of k and select the value of k at the “elbow” of the monotonically decreasing curve of reconstruction error as a function of k. Briefly explain why.</h3>
+<p><strong>TRUE</strong> The choice of k can be subjective and greatly affect the accuracy of the clustering algorithm. When plotting reconstruction error with the elbow method, choose the K where teh curve starts to level out. After it levels out, larger values of K (more clusters) do not greatly improve results/accuracy to justify the increasing computational needs. Also, there may be cases where increasing k decreases reconstruction error at first but than larger values of k increase reconstruction error again. Hence, the “elbow” visualization of choosing k at the crook of the elbow aka where reconstruction error is the least.</p>
+<p></p>
+</section>
+<section id="q3.-30-pt-exercise-7.7-of-alpaydin.-just-briefly-explain-in-3-5-lines.-how-can-we-do-hierarchical-clustering-with-binary-input-vectorsfor-example-for-text-clustering-using-the-bag-of-words-representation" class="level3">
+<h3 class="anchored" data-anchor-id="q3.-30-pt-exercise-7.7-of-alpaydin.-just-briefly-explain-in-3-5-lines.-how-can-we-do-hierarchical-clustering-with-binary-input-vectorsfor-example-for-text-clustering-using-the-bag-of-words-representation">Q3. [30 pt] Exercise 7.7 of Alpaydin. Just briefly explain in 3-5 lines. How can we do hierarchical clustering with binary input vectors—for example, for text clustering using the bag of words representation?</h3>
+<p>In bag of words representation we start with a vocabulary vector <span class="math inline">\(v\)</span>. Then, examining N documents we create a binary vector representing each document of length <span class="math inline">\(v\)</span> representing the presence (1) or abscence (0) of that word in <span class="math inline">\(v\)</span>. For hierarchical clustering with binary vectors such as bag of words, we can compare each index between binary vectors of any two documents, subtracting one vector from another. Where the indices match, the result will be 0, where they do not, the result will be 1. Summing the results of that subtraction we find that lower sum results (aka shorter distances) share more words in common from vocab v, whereas larger sum results (aka larger distances) are more dissimilar. The we can apply hierarchical clustering to accomplish text clustering of documents that are similar to one another.</p>
+</section>
+<section id="q4.-30-pt-true-or-false-in-q2-k-means-clustering-is-guaranteed-to-find-the-same-final-clusters-for-the-above-three-points-no-matter-what-the-initial-cluster-center-values-are.-here-we-assume-the-initial-cluster-centers-ensure-that-neither-of-the-clusters-becomes-empty-in-the-process-of-running-k-means.-briefly-explain-why." class="level3">
+<h3 class="anchored" data-anchor-id="q4.-30-pt-true-or-false-in-q2-k-means-clustering-is-guaranteed-to-find-the-same-final-clusters-for-the-above-three-points-no-matter-what-the-initial-cluster-center-values-are.-here-we-assume-the-initial-cluster-centers-ensure-that-neither-of-the-clusters-becomes-empty-in-the-process-of-running-k-means.-briefly-explain-why.">Q4. [30 pt] True or False: in Q2, k-means clustering is guaranteed to find the same final clusters for the above three points, no matter what the initial cluster center values are. Here we assume the initial cluster centers ensure that neither of the clusters becomes empty in the process of running k-means. Briefly explain why.</h3>
+<p><strong>TRUE</strong> for this specific example in Q2 k-means clustering with the same 3 data points and k=2 assumming no clusters become empty will always converge to one cluster with {0, -2} and another with {10} because the distance between 10 and 0 and 10 and -2 is significantly larger than compared to 0 and -2. <strong>However,</strong> k means clustering is sensitive to the initial random values of k so in general for other applications this may result in different clusters across runs with different initial cluster center values. With more data, it is more likely to find a fairly stable solution, but there are also chances depending on the data that the algorithm never converges.</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
