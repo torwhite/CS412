@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.2.313">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -74,25 +74,43 @@ f(x; a, b) = {
 </div>
 <p>If some value of x was greater than b, the probability would be 0 and if some value of x was less than a, the probability would also be 0. Therefore to maximize the likelihood, we want all values of x to fall within the range <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>.</p>
 <div style="page-break-after: always;"></div>
-<p><strong>I didn’t have time to finish :(</strong></p>
 <ol start="2" type="a">
-<li>The λ parameter of a Poisson distribution, f(x; λ) = ( e −λ λ x x! , x ≥ 0 0 x &lt; 0</li>
+<li>The λ parameter of a Poisson distribution,</li>
 </ol>
-<ol start="2" type="1">
-<li></li>
-</ol>
+<p><span class="math display">\[ f(x; \lambda) =
+\begin{cases}
+    \frac{e^{-\lambda} \lambda^x}{x!}, &amp; \text{if } x \geq 0 \\
+    0, &amp; \text{if } x &lt; 0
+\end{cases}
+\]</span></p>
 <p>(assuming each xi ≥ 0). Show all of your work. (25 points) Hints: (i) plotting some sample data may be helpful and calculus should not be required (a); (ii) maximizing the log likelihood provides the same parameter values and often provides a simpler path to a solution (b); (iii) log(ab) = log a + log b; (iv) log e a = a.</p>
+<p><span class="math display">\[ l(\lambda | x) = p(x|\lambda) = \prod_{i=1}^N p(x_i|\lambda)
+= \prod_{i=1}^N e^{-\lambda}\frac{\lambda}{x!}
+\]</span></p>
+<p>Then, take the log likelihood</p>
+<p><span class="math display">\[ L(\lambda|x) = logl(\lambda|x) = \sum_{i=1}^N logp(x_i|\lambda) \]</span> <span class="math display">\[ = \sum_{i=1}^N loge^{-\lambda} \frac{\lambda^x}{x!}\]</span> <span class="math display">\[ = \sum_{i=1}^N loge^{-\lambda} + log\lambda^x - logx! \]</span> <span class="math display">\[ = -\lambda\sum_{i=1}^N + xlog\lambda - logx! \]</span></p>
+<p><span class="math display">\[ MLE = \lambda^* = argmax_\lambda L(\lambda|x) \]</span> <span class="math display">\[ = -\lambda\sum_{i=1}^N + xlog\lambda - logx! \]</span></p>
 <div style="page-break-after: always;"></div>
-<p>Problem 2. Bayesian Parameter Estimation (50 points) The density function of an exponential distribution is given by fλ(x) = λe−λx. The MLE for the parameter λ can be calculated as λ = n Σixi . We will now consider Bayesian parameter estimation for this distribution.</p>
+<p>Problem 2. Bayesian Parameter Estimation (50 points) The density function of an exponential distribution is given by <span class="math inline">\(f_{\lambda}(x) = \lambda e^{-\lambda x}\)</span>. The MLE for the parameter λ can be calculated as <span class="math inline">\(\lambda = \frac{n}{\sum_ix_i}\)</span>. We will now consider Bayesian parameter estimation for this distribution.</p>
 <ol type="a">
-<li>Using a prior distribution from the Gamma distribution, fα,β(λ) = β αλ α−1 e −λβ Γ(α) , with parameters α and β, show that the posterior distribution for λ, after updating using three datapoints x1, x2, x3, is also a Gamma distribution and show its new parameter values, α 0 and β 0 , in terms of α, β, x1, x2, and x3. (25</li>
+<li>Using a prior distribution from the Gamma distribution, <span class="math inline">\(f_{\alpha, \beta}(\lambda) = \frac{\beta^{\alpha}\lambda^{\alpha-1}e^{-\lambda\beta}}{\Gamma(\alpha)}\)</span>, with parameters α and β, show that the posterior distribution for λ, after updating using three datapoints x1, x2, x3, is also a Gamma distribution and show its new parameter values, α0 and β0, in terms of α, β, x1, x2, and x3. (25 points)</li>
 </ol>
-<p>points)</p>
+<p><span class="math display">\[p(x_1, x_2, x_3 \mid \lambda) = \lambda^3 e^{-\lambda(x_1 + x_2 + x_3)}\]</span></p>
+<p><span class="math display">\[ p(\lambda \mid x_1, x_2, x_3) \propto p(x_1, x_2, x_3 \mid \lambda) \cdot p(\lambda) \]</span></p>
+<p>substituting the prior and likelihood functions we get:</p>
+<p><span class="math display">\[ p(\lambda \mid x_1, x_2, x_3) \propto \frac{\beta^{\alpha}}{\Gamma(\alpha)} \lambda^{\alpha-1} e^{-\lambda\beta} \cdot \lambda^3 e^{-\lambda(x_1 + x_2 + x_3)}\]</span></p>
+<p>which simplifies to :</p>
+<p><span class="math display">\[ p(\lambda \mid x_1, x_2, x_3) \propto \frac{\beta^{\alpha}}{\Gamma(\alpha)} \lambda^{\alpha+2-1} e^{-\lambda(\beta + x_1 + x_2 + x_3)} \]</span></p>
+<p>and we get the parameter values as: <span class="math display">\[ \alpha_0 = \alpha + 2 \]</span> <span class="math display">\[ \beta_0 = \beta + x_1 + x_2 + x_3 \]</span></p>
 <div style="page-break-after: always;"></div>
 <ol start="2" type="a">
-<li>If our prior parameters are α = 2 and β = 1, and our data sample consists of x1 = 3.7, x2 = 4.5, x3 = 4.8: Compute the posterior probability of a new datapoint x4 = 3.8 under the fully Bayesian estimation of λ. You can either leave your answer in terms of the Gamma function, or provide the exact answer. (13 points) Hints: (i) You shouldn’t have to solve the complicated integral; (ii) Since the Gamma distribution normalizes to 1, R λ λ α−1 e −λβdλ = Γ(α) βα ; (iii) The Gamma function is related to the factorial function as</li>
+<li>If our prior parameters are α = 2 and β = 1, and our data sample consists of x1 = 3.7, x2 = 4.5, x3 = 4.8: Compute the posterior probability of a new datapoint x4 = 3.8 under the fully Bayesian estimation of λ. You can either leave your answer in terms of the Gamma function, or provide the exact answer. (13 points) Hints: (i) You shouldn’t have to solve the complicated integral; (ii) Since the Gamma distribution normalizes to 1, R λ λ α−1 e −λβdλ = Γ(α) βα ; (iii) The Gamma function is related to the factorial function as Γ(x) = (x − 1)! for positive integers x.</li>
 </ol>
-<p>Γ(x) = (x − 1)! for positive integers x.</p>
+<p><span class="math display">\[ \alpha_0 = 2 + 2 = 4 \]</span> <span class="math display">\[ \beta_0 = 1 + 3.7 + 4.5 + 4.8 = 14 \]</span></p>
+<p>To compute <span class="math inline">\(x_4\)</span>, plug <span class="math inline">\(\alpha_0\)</span> <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(x_4\)</span> into the density function</p>
+<p><span class="math display">\[ f(\lambda \mid \alpha_0, \beta_0) = \frac{\Gamma(\alpha_0)}{\beta_0^{\alpha_0}} \lambda^{\alpha_0 - 1} e^{-\beta_0 \lambda} \]</span></p>
+<p>so we get:</p>
+<p><span class="math display">\[ f(\lambda \mid 4, 14) = \frac{\Gamma(4)}{14^4} \cdot (3.8)^{4-1} e^{-14 \cdot 3.8} \]</span></p>
 <div style="page-break-after: always;"></div>
 <ol start="3" type="a">
 <li>If we have the same prior and datapoints as in (b), what is the probability of a new datapoint x4 = 3.8 using maximum a posteriori estimation of λ? (12 points) Hint: (i) The mode of the Gamma distribution (i.e., the λ that attains its maximal probability) is α−1</li>
