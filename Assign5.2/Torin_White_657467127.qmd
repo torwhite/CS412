@@ -17,13 +17,13 @@ $P(F, D, S, G | C)$ is Naïve Bayes:
 $P(F,D, S, G|C) = P(F|C) ⋅ P(D|C) ⋅ P(S|C) ⋅ P(G|C)$.
 
 
-Q1. [17 pts] State in natural language what is the conditional independence relationship assumed
+Q1. [20 pts] State in natural language what is the conditional independence relationship assumed
 by Naïve Bayes model.
 
 Naive Bayes model states that F, D, S, G are conditionally independent given C. So the appearance of the words football, defence, strategy and goal are independent of one another given that the document they are found in is a sports article. If not conditioned on C, it is highly likely that F, D, S and G are not independent and if one or more of the words appear in a document, the others are far more likely to appear, aka are marginally correlated. However, conditioned on the condition C (sports article) the probability of seeing one of the words does not affect the probability of seeing another. 
 
 
-Q2. [30 pts] Assume the conditional distribution tables (CPTs) are given by
+Q2. [50 pts] Assume the conditional distribution tables (CPTs) are given by
 
 ![conditional dist table](Q1probs.png)
 Now a new document arrives and it is described by x = (F=0, D=1, S=1, G=1). Assuming a naïve
@@ -52,67 +52,28 @@ So $P(C=1|F=0,D=1,S=1,G=1) = \frac{.0196 * .5}{.0182} = .538$
 
 {{< pagebreak >}}
 
-Q3. [30 pts] Suppose for each $P(F=1|C), P(D=1|C), P(S=1|C)$, and $P(G=1|C)$, we assign a $Beta(2,
-2)$ prior. Recall $Beta(α, β)$ distribution has density function $f(θ) ∝ θ^{α−1}(1 − θ)^{β−1}$. Its mean is 
-$\frac{α}{α+β}$ and its mode is $\frac{α−1}{α+β−2}$ .
+Q3. [30 pt] Since the naïve Bayes model assumes conditional independence and P(C=1) = P(C=0)
+= 0.5, one may suspect that it implies F, D, S, G are independent. Recall that the latter means
 
-Now suppose we observed the following five data points (documents):
+P(F,D, S, G) = P(F) ⋅ P(D) ⋅ P(S) ⋅ P(G).
 
-|F|D|S|G|C|
-|-|-|-|-|-|
-|1|0|1|0|1|
-|0|1|0|1|1|
-|1|1|0|0|0|
-|1|0|1|0|0|
-|0|1|0|1|0|
+Does this hold true for the probabilities given in Q2? Remember, to prove independence, one needs to check all the instantiations of the random variables. But to disprove it, only one needs to be shown untrue.
 
-What is the MAP estimate of $P(F=1|C=1)$ and $P(D=1|C=0)$?
+If independent, 
 
-$\theta_{MAP} = argmax_{\theta}p(\theta|X) = argmax_{\theta}p(X|\theta)p(\theta)$
+$P(F,D,S,G) = P(F) * P(D) * P(S) * P(G) = .0784$ 
 
-the posterior of the Beta function is 
+is equal to the joint probability calculated by:
 
-$p(\theta|A,N,\alpha,\beta) \propto \theta^{A+\alpha-1}(1-p)^{N-A+\beta-1}$
+$P(G|S,D,F)*P(S|D,F)*P(D|F)*P(F)
 
-where $A = \Sigma_{t}x^{t}$
+We can test this by calculating the joint probability for all instantitions. There are 16 possible variables to test in for the four variables. 
 
-$\alpha' = A+\alpha$ and $\beta' = N-A+\beta$
+calculating the first instantiation:
 
-for $P(F=1|C=1)$
+$P(G=1|S=1,D=1,F=1)*P(S=1|D=1,F=1)*P(D=1|F=1)*P(F)$
+$= \frac{P(G=1,S=1,D=1,F=1)}{P(S=1,D=1,F=1)}*\frac{P(S=1,D=1,F=1)}{P(D=1,F=1)}*\frac{P(D=1,F=1)}{P(F=1)}*P(F=1)$
+$=\frac{.8*.7*.2*.7}{.8*.7*.2}*\frac{.8*.7*.2}{.8*.7}*\frac{.8*.7}{.8}*.8$
+$=.7*.2*.7*.8 = .0784$
 
-A = 1
-N = 2
-
-$\alpha' = 1 + 2 = 3$
-
-$\beta' = 2 - 1 + 2 = 3$
-
-$\theta_{MAP} = \frac{\alpha' - 1}{\alpha' + \beta' -2}$
-
-$\theta_{MAP} = \frac{3 - 1}{3+ 3 -2}$
-
-$\theta_{MAP} = 1/2$ 
-
-for $P(D=1|C=0)$
-
-A = 2
-N = 3
-
-$\alpha' = 2+2 = 4$
-
-$\beta' = 3-2+2 = 3$
-
-$\theta_{MAP} = \frac{4 - 1}{4 + 3 -2} = 3/5$
-
-{{< pagebreak >}}
-
-Q4. [23 pts] Suppose we also assign a Beta(2, 2) prior on P(C=1). Using the data table in Q3,
-what is the probability that the next document will be about sports (C=1)?
-
-we can use Full Bayesian to predict the next document:
-
-$\theta_{Baye's} = P(C=1|D) \propto P(D|C=1) * P(C=1)$
-
-$= \frac{(2+2)}{(2+2+2)} * .5 = 2/3$
-
-There's a 2/3 chance the next document will be about sports with a Beta(2,2) prior.
+The first instantiation does indeed have the same value of P(F)*P(D)*P(S)*P(G). But to prove independence the rest of the values would have to be calculated. 

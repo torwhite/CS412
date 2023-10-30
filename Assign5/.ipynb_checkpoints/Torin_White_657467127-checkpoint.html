@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.313">
+<meta name="generator" content="quarto-1.2.269">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -78,10 +78,10 @@ ul.task-list li input[type="checkbox"] {
 <p><span class="math display">\[ P(Y|X_{1:d}) = \frac{P(X_{1:d}|Y)P(Y)}{P(X_{1:d})} \]</span></p>
 <p>where <span class="math inline">\(P(x_{1:d}|C) = \prod_{j=1:d}P(x_j|y)\)</span> and <span class="math inline">\(P(X_{1:d}) = \Sigma_{Y'}P(X_{1:d}|Y')P(Y')\)</span></p>
 <p>So, for the example <span class="math display">\[ P(C=1|F=0,D=1,S=1,G=1) = \frac{P(F=0,D=1,S=1,G=1|C=1)P(C=1)}{P(F=0,D=1,S=1,G=1)} \]</span></p>
-<p><span class="math inline">\(P(F=0,D=1,S=1,G=1|C=1) = P(F=0|C=1)P(D=1|C=1)P(S=1|C=1)P(G=1|C=1) = .2*.7*.2*.7 = .0196\)</span></p>
+<p><span class="math inline">\(P(F=0,D=1,S=1,G=1|C=1) = P(F=0|C=1)P(D=1|C=1)P(S=1|C=1)P(G=1|C=1) = .2*.7*.2*.7 = .196\)</span></p>
 <p><span class="math inline">\(P(C=1)\)</span> is given as .5</p>
-<p>and, <span class="math inline">\(P(F=0,D=1,S=1,G=1) = P(F=0|C=1) * P(D=1|C=1) * P(S=1|C=1) * P(G=1|C=1) * P(C=1) + P(F=1|C=0) * P(D=1|C=0) * P(S=1|C=0) * P(G=1|C=0) * P(C=0) = (1-.8) * .7 * .2 * .7 * .5 + .1 * .7 * .8 * .3 * .5 = .0098 + .0084 = .0182\)</span></p>
-<p>So <span class="math inline">\(P(C=1|F=0,D=1,S=1,G=1) = \frac{.0196 * .5}{.0182} = .538\)</span></p>
+<p>and <span class="math inline">\(P(F=0,D=1,S=1,G=1) = P(F=0|C=1)P(C=1) + P(D=1|C=1)P(C=1) + P(S=1|C=1)P(C=1) + P(G=1|C=1)P(C=1) = .2*.5 + .7*.5 + .2*.5 + .7*.5 = .1 + .35 + .1 + .35 = .9\)</span></p>
+<p>So <span class="math inline">\(P(C=1|F=0,D=1,S=1,G=1) = \frac{.196 * .5}{.9} = .109\)</span></p>
 <div style="page-break-after: always;"></div>
 <p>Q3. [30 pts] Suppose for each <span class="math inline">\(P(F=1|C), P(D=1|C), P(S=1|C)\)</span>, and <span class="math inline">\(P(G=1|C)\)</span>, we assign a <span class="math inline">\(Beta(2, 2)\)</span> prior. Recall <span class="math inline">\(Beta(α, β)\)</span> distribution has density function <span class="math inline">\(f(θ) ∝ θ^{α−1}(1 − θ)^{β−1}\)</span>. Its mean is <span class="math inline">\(\frac{α}{α+β}\)</span> and its mode is <span class="math inline">\(\frac{α−1}{α+β−2}\)</span> .</p>
 <p>Now suppose we observed the following five data points (documents):</p>
@@ -153,10 +153,14 @@ ul.task-list li input[type="checkbox"] {
 <p><span class="math inline">\(\theta_{MAP} = \frac{4 - 1}{4 + 3 -2} = 3/5\)</span></p>
 <div style="page-break-after: always;"></div>
 <p>Q4. [23 pts] Suppose we also assign a Beta(2, 2) prior on P(C=1). Using the data table in Q3, what is the probability that the next document will be about sports (C=1)?</p>
-<p>we can use Full Bayesian to predict the next document:</p>
-<p><span class="math inline">\(\theta_{Baye's} = P(C=1|D) \propto P(D|C=1) * P(C=1)\)</span></p>
-<p><span class="math inline">\(= \frac{(2+2)}{(2+2+2)} * .5 = 2/3\)</span></p>
-<p>There’s a 2/3 chance the next document will be about sports with a Beta(2,2) prior.</p>
+<p>we can use the MAP (or the Bayes estimator) also to predict the next document:</p>
+<p><span class="math inline">\(\theta_{MAP} = \frac{\alpha' - 1}{\alpha' + \beta' -2}\)</span></p>
+<p>A = 2</p>
+<p>N = 5</p>
+<p><span class="math inline">\(\alpha' = 2+2 = 4\)</span></p>
+<p><span class="math inline">\(\beta' = 5-2+2 = 5\)</span></p>
+<p><span class="math inline">\(\theta_{MAP} = \frac{4 - 1}{4 + 5 -2} = 3/7\)</span></p>
+<p>There’s a 3/7th chance the next document will be about sports with a Beta(2,2) prior.</p>
 
 </main>
 <!-- /main column -->
