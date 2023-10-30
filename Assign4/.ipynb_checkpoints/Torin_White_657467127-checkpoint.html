@@ -96,7 +96,7 @@ S^{2}_{i1} &amp; 0 &amp; ... &amp; 0 \\
 <p>plugging in the density function:</p>
 <p><span class="math inline">\(p(\boldsymbol{x}) = \frac{1}{(2\pi)^{d/2} |\boldsymbol{\Sigma}|^{1/2}} \exp\left(-\frac{1}{2} (\boldsymbol{x} - \boldsymbol{\mu})^T \boldsymbol{\Sigma}^{-1} (\boldsymbol{x} - \boldsymbol{\mu}) \right)\)</span></p>
 <p>we get:</p>
-<p><span class="math inline">\(\log g_i(x) \triangleq \log P(C_i) + \log(\frac{1}{(2\pi)^{d/2} |\boldsymbol{\Sigma_{i}}|^{1/2}} \exp\left(-\frac{1}{2} (\boldsymbol{x} - \boldsymbol{\mu_{i}})^T \boldsymbol{\Sigma_{i}}^{-1} (\boldsymbol{x} - \boldsymbol{\mu_{i}}) \right))\)</span></p>
+<p><span class="math inline">\(\log g_i(x) \triangleq \log P(C_i) + \frac{1}{(2\pi)^{d/2} |\boldsymbol{\Sigma_{i}}|^{1/2}} \exp\left(-\frac{1}{2} (\boldsymbol{x} - \boldsymbol{\mu_{i}})^T \boldsymbol{\Sigma_{i}}^{-1} (\boldsymbol{x} - \boldsymbol{\mu_{i}}) \right)\)</span></p>
 <p>For this case of the diagonal covariance matrices:</p>
 <p><span class="math display">\[
 \Sigma_{1} =
@@ -119,15 +119,15 @@ S^{2}_{i1} &amp; 0 &amp; ... &amp; 0 \\
 \quad
 \]</span></p>
 <p>find the determinant of <span class="math inline">\(\Sigma_{i}\)</span></p>
-<p><span class="math inline">\(|\Sigma_i| = \prod_{i=1}^d (S_{ij}^2)\)</span></p>
-<p><span class="math inline">\(\log g_i(x) \triangleq \log P(C_i) + \log(\frac{1}{(2\pi)^{d/2} |\prod_{i=1}^d S_{i}^2|^{1/2}} \exp\left(-\frac{1}{2} (\boldsymbol{x} - \boldsymbol{\mu_{i}})^T \boldsymbol{\Sigma_{i}}^{-1} (\boldsymbol{x} - \boldsymbol{\mu_{i}}) \right))\)</span></p>
+<p><span class="math inline">\(|\Sigma_i| = \prod_{i=1}^d S_{i}^2\)</span></p>
+<p><span class="math inline">\(\log g_i(x) \triangleq \log P(C_i) + \frac{1}{(2\pi)^{d/2} |\prod_{i=1}^d S_{i}^2|^{1/2}} \exp\left(-\frac{1}{2} (\boldsymbol{x} - \boldsymbol{\mu_{i}})^T \boldsymbol{\Sigma_{i}}^{-1} (\boldsymbol{x} - \boldsymbol{\mu_{i}}) \right)\)</span></p>
 <p>find the inverse of <span class="math inline">\(\Sigma_{i}\)</span></p>
-<p><span class="math inline">\(\Sigma_1^{-1} = \begin{bmatrix} \frac{1}{(S_{i1})^2} &amp; 0 &amp; ... &amp; 0 \\ 0 &amp; \frac{1}{(S_{i2})^2} &amp; ... &amp;0\\ ... &amp; ... &amp; ... &amp; ...\\ 0 &amp; 0 &amp; ... &amp; \frac{1}{(S_{id})^2}\\ \end{bmatrix} \quad\)</span></p>
+<p><span class="math inline">\(\Sigma_1^{-1} = \begin{bmatrix} \frac{1}{S^{2}_{i1}} &amp; 0 &amp; ... &amp; 0 \\ 0 &amp; \frac{1}{S^{2}_{i2}} &amp; ... &amp;0\\ ... &amp; ... &amp; ... &amp; ...\\ 0 &amp; 0 &amp; ... &amp; \frac{1}{S^{2}_{id}}\\ \end{bmatrix} \quad\)</span></p>
 <p>then,</p>
 <p><span class="math inline">\((\boldsymbol{x} - \boldsymbol{\mu_{i}})^T \boldsymbol{\Sigma_{i}}^{-1} (\boldsymbol{x} - \boldsymbol{\mu_{i}})\)</span></p>
-<p>simplifies to <span class="math inline">\(\sum_{j=1}^{d} \frac{(x_j - \mu_{ij})^2}{(S_{ij})^2}\)</span></p>
+<p>simplifies to <span class="math inline">\(\sum_{j=1}^{d} \frac{(x_j - \mu_{ij})^2}{S^2_{ij}}\)</span></p>
 <p>then plugging into discriminant function:</p>
-<p><span class="math inline">\(\log g_i(x) \triangleq \log P(C_i) - \frac{d}{2}\log(2\pi) -\frac{1}{2}\sum_{j=1}^{d}\log((S_{ij})^2) - {\frac{1}{2}\sum_{j=1}^{d}\frac{(x_j-\mu_{ij})^2}{(S_{ij})^2}}\)</span></p>
+<p><span class="math inline">\(\log g_i(x) \triangleq \log P(C_i) + \frac{1}{(2\pi)^{d/2} |\prod_{i=1}^d S_{i}^2|^{1/2}} \exp-{\frac{1}{2}\sum_{j=1}^{d}\frac{(x_j-\mu_{ij})^2}{S_{ij}^2}}\)</span></p>
 </section>
 <section id="b" class="level3">
 <h3 class="anchored" data-anchor-id="b">b)</h3>

@@ -49,7 +49,7 @@ $p(\boldsymbol{x}) = \frac{1}{(2\pi)^{d/2} |\boldsymbol{\Sigma}|^{1/2}} \exp\lef
 
 we get:
 
-$\log g_i(x) \triangleq \log P(C_i) + \frac{1}{(2\pi)^{d/2} |\boldsymbol{\Sigma_{i}}|^{1/2}} \exp\left(-\frac{1}{2} (\boldsymbol{x} - \boldsymbol{\mu_{i}})^T \boldsymbol{\Sigma_{i}}^{-1} (\boldsymbol{x} - \boldsymbol{\mu_{i}}) \right)$
+$\log g_i(x) \triangleq \log P(C_i) + \log(\frac{1}{(2\pi)^{d/2} |\boldsymbol{\Sigma_{i}}|^{1/2}} \exp\left(-\frac{1}{2} (\boldsymbol{x} - \boldsymbol{\mu_{i}})^T \boldsymbol{\Sigma_{i}}^{-1} (\boldsymbol{x} - \boldsymbol{\mu_{i}}) \right))$
 
 
 For this case of the diagonal covariance matrices: 
@@ -79,18 +79,18 @@ $$
 
 find the determinant of $\Sigma_{i}$
 
- $|\Sigma_i| = \prod_{i=1}^d S_{i}^2$
+$|\Sigma_i| = \prod_{i=1}^d (S_{ij}^2)$
  
-$\log g_i(x) \triangleq \log P(C_i) + \frac{1}{(2\pi)^{d/2} |\prod_{i=1}^d S_{i}^2|^{1/2}} \exp\left(-\frac{1}{2} (\boldsymbol{x} - \boldsymbol{\mu_{i}})^T \boldsymbol{\Sigma_{i}}^{-1} (\boldsymbol{x} - \boldsymbol{\mu_{i}}) \right)$
+$\log g_i(x) \triangleq \log P(C_i) + \log(\frac{1}{(2\pi)^{d/2} |\prod_{i=1}^d S_{i}^2|^{1/2}} \exp\left(-\frac{1}{2} (\boldsymbol{x} - \boldsymbol{\mu_{i}})^T \boldsymbol{\Sigma_{i}}^{-1} (\boldsymbol{x} - \boldsymbol{\mu_{i}}) \right))$
 
 find the inverse of $\Sigma_{i}$
 
 $\Sigma_1^{-1} = 
 \begin{bmatrix} 
-\frac{1}{S^{2}_{i1}} & 0 & ... & 0 \\
-0 & \frac{1}{S^{2}_{i2}} & ... &0\\
+\frac{1}{(S_{i1})^2} & 0 & ... & 0 \\
+0 & \frac{1}{(S_{i2})^2} & ... &0\\
 ... & ... & ... & ...\\
-0 & 0 & ... & \frac{1}{S^{2}_{id}}\\
+0 & 0 & ... & \frac{1}{(S_{id})^2}\\
 \end{bmatrix}
 \quad$
 
@@ -98,13 +98,13 @@ then,
 
 $(\boldsymbol{x} - \boldsymbol{\mu_{i}})^T \boldsymbol{\Sigma_{i}}^{-1} (\boldsymbol{x} - \boldsymbol{\mu_{i}})$ 
 
-simplifies to $\sum_{j=1}^{d} \frac{(x_j - \mu_{ij})^2}{S^2_{ij}}$
+simplifies to $\sum_{j=1}^{d} \frac{(x_j - \mu_{ij})^2}{(S_{ij})^2}$
 
 then plugging into discriminant function:
 
-$\log g_i(x) \triangleq \log P(C_i) + \frac{1}{(2\pi)^{d/2} |\prod_{i=1}^d S_{i}^2|^{1/2}} \exp-{\frac{1}{2}\sum_{j=1}^{d}\frac{(x_j-\mu_{ij})^2}{S_{ij}^2}}$
+$\log g_i(x) \triangleq \log P(C_i) - \frac{d}{2}\log(2\pi) -\frac{1}{2}\sum_{j=1}^{d}\log((S_{ij})^2) - {\frac{1}{2}\sum_{j=1}^{d}\frac{(x_j-\mu_{ij})^2}{(S_{ij})^2}}$
 
-
+\pagebreak
 
 ### b) 
 **When does the separating boundary become linear (instead of quadratic)? (50 points)**
@@ -128,7 +128,7 @@ $\sum_{j=1}^{d} -2x_j\mu_{1j} + \mu_{1j}^2 = \sum_{j=1}^{d}  -2x_j\mu_{2j} + \mu
 
 which leaves no quadratic terms, making the boundary linear.
 
-
+\pagebreak
 
 ## Q2
 **[Exercise 5.4 of Alpaydin] But instead of four cases, do it only for the case of $\Sigma1 ≠ \Sigma2$. You need to
@@ -169,7 +169,5 @@ $(2\pi)^{d/2}$ cancels out leaving:
 $$
 \frac{\log P(C_1)}{\log P(C_2)} + \frac{|\boldsymbol{\Sigma_{2}}|^{1/2} \exp\left(-\frac{1}{2} (x^T\Sigma_{1}^{-1}x - 2x^T\Sigma_{1}^{-1}\mu_{1} + \mu_{1}^T\Sigma_{1}^{-1}\mu_{1})\right)}{|\boldsymbol{\Sigma_{1}}|^{1/2}\exp\left(-\frac{1}{2} (x^T\Sigma_{2}^{-1}x - 2x^T\Sigma_{2}^{-1}\mu_{2} + \mu_{2}^T\Sigma_{2}^{-1}\mu_{2})\right)}
 $$
-
-
 
 
