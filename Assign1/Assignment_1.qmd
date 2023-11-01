@@ -72,7 +72,7 @@ $P(A|C$
 First, find the probabilities of $A$, $B$, and $C$: 
 $$
 \displaylines{P(A) = P(A=1,B=0,C=0) + P(A=1,B=0,C=1) + P(A=1,B=1,C=0) + P(A=1,B=1,C=1) \\
-P(A) = .024 + .180 +.180 +.096 = .516}
+P(A) = .024 + .180 +.180 +.096 = .48}
 $$
 
 $$
@@ -94,19 +94,15 @@ $$
 $$
 $$
 \displaylines{P(A|C) = P(A)P(C)/P(C) \\
-= (.516*.516) / .516 \\
-= .516 \\
+= (.48*.516) / .516 \\
+= .48 \\
 P(B|C) = P(B)*P(C)/P(C) \\
 = (.62*.516)/ .516 \\
 = .62 \\
-P(A|C)*P(B|C) = .320 \\}
+P(A|C)*P(B|C) = .48 * .62 = .2976 \\}
 $$
 
-$.186 \neq .320$ so the statement A ⊥ B|C is **not** true. 
-
-
-
-$$
+$.186 \neq .2976$ so the statement A ⊥ B|C is **not** true. $
 
 
 {{< pagebreak >}}
