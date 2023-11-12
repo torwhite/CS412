@@ -1,0 +1,9 @@
+---
+title: "Assignment 7"
+author: Torin White - 657467127
+---
+
+Q1. [100 pt] Consider the following data set comprised of three binary input attributes (A1, A2, and A3) and one binary output.
+
+![Q1 table](Q1_table.png)
+
