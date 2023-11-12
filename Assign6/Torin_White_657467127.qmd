@@ -71,7 +71,7 @@ compressed file size = $(\frac{n}{c})^2log_2k + kd$
 
 $compression ratio = \frac{uncompressed image size}{compressed image size}$
 
-$compression ratio = \frac{Nn^2d}{(\frac{n}{c})^2log_2k + kd}$  *where k*d is the space needed to save the prototype/decoder values
+$compression ratio = \frac{Nn^2d}{N(\frac{n}{c})^2log_2k + kd}$  *where k*d is the space needed to save the prototype/decoder values
 
 
 {{< page break >}}
