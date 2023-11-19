@@ -1,5 +1,5 @@
 import numpy as np
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 
 np.random.seed(1)
@@ -9,7 +9,7 @@ np.random.seed(1)
 def sigmoid(z):
     """
     sigmoid function that maps inputs into the interval [0,1]
-    Your implementation must be able to handle the case when z is a vector (see unit test)
+    Your implementation must be able to handle the case when z is a vector (see     unit test)
     Inputs:
     - z: a scalar (real number) or a vector
     Outputs:
@@ -34,7 +34,7 @@ def logistic_regression(X, w):
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
     z = np.dot(X, w)
     # use sigmoid on results
-    logits = sigmoid(z)
+    logits = np.array(sigmoid(z))
     # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
     return logits
 
@@ -53,6 +53,16 @@ def logistic_loss(X, w, y):
     - grad: an array of shape (num_featues,), the gradient of loss 
     """
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
+    logits = logistic_regression(X, w)
+  
+    # calculate loss
+    # calculate individual losses
+    losses = -y * np.log(logits) - (1 - y) * np.log(1 - logits)
+    # take mean of losses
+    loss = np.mean(losses)
+    
+    # calculate gradient
+    grad = (1/len(y)) * np.dot(np.transpose(X), (logits - y))
 
     # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
     return loss, grad
@@ -60,7 +70,7 @@ def logistic_loss(X, w, y):
 #Problem 2.5
 def train_model_gd():
     import numpy as np
-    import matplotlib.pyplot as plt
+    #import matplotlib.pyplot as plt
     from sklearn.datasets import load_digits
     from sklearn.model_selection import train_test_split
 
